@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIR-ENG | Catatan Insiden Rundown - ENG</title>
+    <link href="pkg/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-3 px-5">
+        <div class="d-flex justify-content-md-center my-5">
+            <h1 id="judulProblem" class="text-info text-lg-center">Hi,<br>
+                What's Your Problem?
+            </h1>
+        </div>
+
+        <div class="row justify-content-center">
+
+        <div class="m-2 col-md-5">
+            <form id="formProblem">
+                <select class="form-select col-md-6 mb-3 text-sm-left" id="pilihCarline" name="pilihCarline" aria-label="Pilih Carline">
+                <option selected disabled value="0">Pilih Carline</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Daihatsu">Daihatsu</option>
+                <option value="Honda">Honda</option>
+                <option value="MMKI">MMKI</option>
+                <option value="Domestik">Domestik</option>
+                <option value="TypeB">Tipe B</option>
+            </select>
+
+            <select class="form-select col-md-6 mb-3 text-sm-left" id="pilihMesin" name="pilihMesin" aria-label="Pilih Mesin">
+                <option selected disabled value="0">Pilih Mesin</option>
+            </select>
+            
+            <select class="form-select col-md-6 mb-3 text-sm-left" id="kategoriProblem" name="kategoriProblem" aria-label="Kategori Problem">
+                <option selected disabled value="0">Kategori Problem</option>
+                <option value="Problem Internal">Problem Internal</option>
+                <option value="Downtime">Downtime</option>
+            </select>
+
+            <select class="form-select col-md-6 mb-3 text-sm-left" id="jenisProblem" name="jenisProblem" aria-label="Jenis Problem">
+                <option selected disabled value="0">Jenis Problem</option>
+            </select>
+            
+            <textarea class="form-control col-md-6 mb-3 text-sm-left" id="keteranganProblem" name="keteranganProblem" rows="3" placeholder="Keterangan Problem"></textarea>
+            
+            </form>
+        </div>
+        <div class="d-flex justify-content-center my-2">
+  <button type="button" class="btn btn-primary px-5 py-2" id="kirimButton" name="kirimButton">
+    Kirim
+  </button> 
+</div>
+        
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="pkg/js/main.js"></script>
+</body>
+</html>
