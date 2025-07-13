@@ -20,22 +20,6 @@ Jenis Problem: ${jenis}
 Keterangan : ${keterangan}
 
 Mohon kepada Teknisi agar segera diperbaiki`;
-    
-
-//       const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(pesan)}`;
-
-//       fetch(url)
-//         .then(response => response.json())
-//         .then(data => {
-//           alert('Pesan berhasil dikirim!');
-//         // reset form dan judul
-//           document.getElementById("formProblem").reset();
-//           document.getElementById("judulProblem").innerHTML = "Hi,<br>What's Your Problem?";
-//         })
-//         .catch(error => {
-//           alert('Gagal kirim pesan.');
-//           console.error('Error:', error);
-//         });
 
     try {
         await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -52,3 +36,13 @@ Mohon kepada Teknisi agar segera diperbaiki`;
 });
 
 module.exports = router;
+
+router.post('/selesai', (req, res) => {
+    const { id, durasiTunggu, durasiPerbaikan } = req.body;
+
+    // Simpan ke file/database
+    console.log(`Insiden ${id} selesai. Tunggu: ${durasiTunggu}s, Perbaikan: ${durasiPerbaikan}s`);
+
+    res.json({ status: "ok" });
+});
+

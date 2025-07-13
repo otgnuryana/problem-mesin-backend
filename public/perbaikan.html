@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Halaman Perbaikan</title>
+    <link href="pkg/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="text-center m-4">
+
+    <h2 id="judulInsiden">Mohon menunggu teknisi datang... <span id="kodeId">-</span></h2>
+    <p>Waktu Tunggu Teknisi: <span id="timerTunggu">0:00:00</span></p>
+    <p>Waktu Perbaikan: <span id="timerPerbaikan">0:00:00</span></p>
+
+    <button class="btn btn-warning m-2" id="btnDatang">Teknisi Datang</button>
+    <button class="btn btn-success m-2" id="btnSelesai" disabled>Perbaikan Selesai</button>
+
+    <script>
+        // Ambil ID insiden dari query URL
+        const params = new URLSearchParams(location.search);
+        const insidenId = params.get("id");
+        document.getElementById("kodeId").innerText = insidenId;
+    </script>
+    <script src="pkg/js/perbaikan.js"></script>
+</body>
+</html>
