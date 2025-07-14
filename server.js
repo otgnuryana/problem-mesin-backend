@@ -8,6 +8,9 @@ const PORT = 3000;
 app.use (bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/perbaikan', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/perbaikan.html'));
+});
 
 const formRoute = require('./routes/formRoute');
 app.use('/kirim', formRoute);
