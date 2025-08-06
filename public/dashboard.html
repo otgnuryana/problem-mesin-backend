@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard Downtime</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    #status { margin-top: 10px; font-size: 0.9em; color: gray; }
+  </style>
+</head>
+<body>
+  <h1>📊 Monitoring Downtime Mesin</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Mesin</th>
+        <th>Start</th>
+        <th>Repair Start</th>
+        <th>End</th>
+        <th>Durasi Tunggu</th>
+        <th>Durasi Perbaikan</th>
+        <th>Total Perbaikan</th>
+      </tr>
+    </thead>
+    <tbody id="data-body"></tbody>
+    <tfoot>
+  <tr>
+    <td colspan="7" style="text-align: right;"><strong>Total Semua Perbaikan</strong></td>
+    <td id="total-semua">-</td>
+  </tr>
+</tfoot>
+  </table>
+
+  <div id="status">🔄 Memuat data...</div>
+
+<script>
+function fetchData() {
+  fetch('/downtime/data')
+    .then(res => res.json())
+    .then(data => {
+      const tbody = document.getElementById('data-body');
+      tbody.innerHTML = '';
+      let totalSemua = 0;
+
+      data.forEach((item, i) => {
+        const durasiTunggu = item.durasi_tunggu != null
+          ? formatSeconds(item.durasi_tunggu)
+          : '-';
+        const durasiPerbaikan = item.durasi_perbaikan != null
+          ? formatSeconds(item.durasi_perbaikan)
+          : '-';
+        const totalPerbaikan = item.total_perbaikan != null
+          ? formatSeconds(item.total_perbaikan)
+          : '-';
+
+        if (item.total_perbaikan) totalSemua += item.total_perbaikan;
+
+        tbody.innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${item.mesin}</td>
+            <td>${format(item.start_time)}</td>
+            <td>${format(item.repair_start_time)}</td>
+            <td>${format(item.end_time)}</td>
+            <td>${durasiTunggu}</td>
+            <td>${durasiPerbaikan}</td>
+            <td>${totalPerbaikan}</td>
+          </tr>
+        `;
+      });
+
+      document.getElementById('total-semua').innerText = formatSeconds(totalSemua);
+      document.getElementById('status').innerText =
+        '✅ Terakhir diperbarui: ' + new Date().toLocaleTimeString();
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById('status').innerText = '⚠️ Gagal memuat data';
+    });
+}
+
+function format(isoString) {
+  if (!isoString) return '-';
+  const d = new Date(isoString);
+  return d.toLocaleString();
+}
+
+function formatSeconds(sec) {
+  const mins = Math.floor(sec / 60);
+  const secs = sec % 60;
+  return `${mins}m ${secs}s`;
+}
+
+// Jalankan dan auto-refresh
+fetchData();
+setInterval(fetchData, 5000);
+</script>
+
+</body>
+</html>
