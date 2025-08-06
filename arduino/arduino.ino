@@ -1,29 +1,35 @@
-const int pinA = 2;
-const int pinB = 3;
+const int pinA = 2;  // tombol merah (START)
+const int pinB = 3;  // tombol flasher (REPAIR)
+
 String mesin = "D9-10";
 
-int lastState = 0;
+enum State { IDLE, START, REPAIR };
+State lastState = IDLE;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(pinA, INPUT_PULLUP);
+  pinMode(pinA, INPUT_PULLUP);  // logika terbalik
   pinMode(pinB, INPUT_PULLUP);
 }
 
 void loop() {
-  bool a = !digitalRead(pinA); // HIGH jika terhubung ke GND
+  bool a = !digitalRead(pinA);  // aktif jika LOW karena pullup
   bool b = !digitalRead(pinB);
 
-  if (a && b && lastState != 1) {
+  if (a && b && lastState != START) {
     Serial.println(mesin + ":START");
-    lastState = 1;
-  } else if (!a && b && lastState != 2) {
+    lastState = START;
+  }
+  else if (!a && b && lastState != REPAIR) {
     Serial.println(mesin + ":REPAIR");
-    lastState = 2;
-  } else if (!a && !b && lastState != 0) {
+    lastState = REPAIR;
+  }
+  else if (!a && !b && lastState != IDLE) {
     Serial.println(mesin + ":FINISH");
-    lastState = 0;
+    lastState = IDLE;
   }
 
+  delay(100); // debouncing & anti spam
+}
   delay(100);
 }
