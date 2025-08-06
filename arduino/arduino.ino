@@ -31,5 +31,3 @@ void loop() {
 
   delay(100); // debouncing & anti spam
 }
-  delay(100);
-}
