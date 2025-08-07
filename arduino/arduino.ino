@@ -1,50 +1,33 @@
-import serial
-import requests
+const int pinStart = 2;
+const int pinRepair = 3;
 
-PORT = 'COM11'  # Ganti sesuai port Arduino kamu
-BAUD = 9600
-SERVER_URL = 'http://localhost:3000/downtime'  # Ganti jika server beda
+bool sudahStart = false;
+bool sudahRepair = false;
 
-def kirim_ke_server(mesin, aksi):
-    endpoint_map = {
-        'START': 'start',
-        'REPAIR-START': 'repair-start',
-        'FINISH': 'finish'
-    }
+String idMesin = "D9-10";  // ganti sesuai mesin
 
-    if aksi not in endpoint_map:
-        print(f"⚠️ Aksi tidak dikenali: {aksi}")
-        return
+void setup() {
+  pinMode(pinStart, INPUT_PULLUP);
+  pinMode(pinRepair, INPUT_PULLUP);
+  Serial.begin(9600);
+}
 
-    try:
-        url = f"{SERVER_URL}/{endpoint_map[aksi]}"
-        response = requests.post(url, json={'mesin': mesin})
-        print(f"📡 Kirim ke {url} => {response.status_code}, {response.text}")
-    except Exception as e:
-        print(f"❌ Gagal kirim request: {e}")
+void loop() {
+  bool startAktif = digitalRead(pinStart) == LOW;
+  bool repairAktif = digitalRead(pinRepair) == LOW;
 
-def baca_serial():
-    try:
-        ser = serial.Serial(PORT, BAUD, timeout=1)
-        print(f"✅ Terhubung ke {PORT} pada {BAUD}bps")
+  if (startAktif && repairAktif && !sudahStart) {
+    Serial.println(idMesin + "|START");
+    sudahStart = true;
+    sudahRepair = false;
+  } else if (!startAktif && repairAktif && !sudahRepair) {
+    Serial.println(idMesin + "|REPAIR-START");
+    sudahRepair = true;
+  } else if (!startAktif && !repairAktif && (sudahStart || sudahRepair)) {
+    Serial.println(idMesin + "|FINISH");
+    sudahStart = false;
+    sudahRepair = false;
+  }
 
-        while True:
-            line = ser.readline().decode().strip()
-            if not line:
-                continue
-
-            print(f"📥 Serial masuk: {line}")
-
-            if '|' in line:
-                mesin, aksi = line.split('|', 1)
-                mesin = mesin.strip()
-                aksi = aksi.strip().upper()
-                kirim_ke_server(mesin, aksi)
-            else:
-                print("⚠️ Format salah, abaikan")
-
-    except serial.SerialException as e:
-        print(f"❌ Gagal buka port serial: {e}")
-
-if __name__ == '__main__':
-    baca_serial()
+  delay(300);
+}
