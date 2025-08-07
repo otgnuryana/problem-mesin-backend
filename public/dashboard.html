@@ -1,104 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <title>Dashboard Downtime</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Downtime Mesin</title>
   <style>
     body { font-family: sans-serif; margin: 20px; }
-    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f4f4f4; }
-    #status { margin-top: 10px; font-size: 0.9em; color: gray; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { padding: 8px; border: 1px solid #ccc; text-align: left; }
+    th { background: #eee; }
   </style>
 </head>
 <body>
-  <h1>📊 Monitoring Downtime Mesin</h1>
-  <table>
+  <h1>📊 Dashboard Downtime Mesin</h1>
+
+  <label for="tanggal">Tanggal: </label>
+  <input type="date" id="tanggal" />
+  
+  <label for="shift">Shift: </label>
+  <select id="shift">
+    <option value="1">Shift 1 (06:00–19:00)</option>
+    <option value="2">Shift 2 (19:00–06:00)</option>
+  </select>
+
+  <label>
+    <input type="checkbox" id="belum_selesai" /> Hanya yang belum selesai
+  </label>
+
+  <button onclick="fetchData()">🔄 Tampilkan</button>
+
+  <table id="dataTable">
     <thead>
       <tr>
-        <th>No</th>
         <th>Mesin</th>
         <th>Start</th>
         <th>Repair Start</th>
         <th>End</th>
         <th>Durasi Tunggu</th>
         <th>Durasi Perbaikan</th>
-        <th>Total Perbaikan</th>
+        <th>Total</th>
       </tr>
     </thead>
-    <tbody id="data-body"></tbody>
+    <tbody></tbody>
     <tfoot>
   <tr>
-    <td colspan="7" style="text-align: right;"><strong>Total Semua Perbaikan</strong></td>
+    <td colspan="6" style="text-align: right;"><strong>Total Semua Perbaikan</strong></td>
     <td id="total-semua">-</td>
   </tr>
 </tfoot>
+    
+
   </table>
+    <div class="status">
+      <p id="status"></p>
+    </div>
 
-  <div id="status">🔄 Memuat data...</div>
+  <script>
+    // Saat halaman dibuka, isi tanggal default hari ini
+    document.getElementById("tanggal").value = new Date().toISOString().split('T')[0];
 
-<script>
-function fetchData() {
-  fetch('/downtime/data')
-    .then(res => res.json())
-    .then(data => {
-      const tbody = document.getElementById('data-body');
-      tbody.innerHTML = '';
+function formatDate(dateString) {
+    if (!dateString) return "-";
+    const date = new Date(dateString);
+    return date.toLocaleString("id-ID", {
+      timeZone: "Asia/Jakarta",
+      hour12: false,
+    });
+  }
+
+  function formatDuration(ms) {
+    if (!ms || isNaN(ms)) return "00:00:00";
+    const totalSeconds = Math.floor(ms / 1000);
+    const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+    const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+    const seconds = String(totalSeconds % 60).padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
+  async function fetchData() {
+    const tanggal = document.getElementById("tanggal").value;
+    const shift = document.getElementById("shift").value;
+    const belumSelesai = document.getElementById("belum_selesai").checked;
+
+    const url = `/data?tanggal=${tanggal}&shift=${shift}&belum_selesai=${belumSelesai}`;
+    const tbody = document.querySelector("#dataTable tbody");
+      tbody.innerHTML = "";
+      
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      
+      const data = await res.json();
+      
+      
+      if (!Array.isArray(data)) {
+        console.error("Bukan array:", data);
+        tbody.innerHTML = "<tr><td colspan='7'>❌ Format data salah</td></tr>";
+        return;
+      }
+
+      if (data.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='7'>📭 Tidak ada data</td></tr>";
+        return;
+      }
+
       let totalSemua = 0;
 
-      data.forEach((item, i) => {
-        const durasiTunggu = item.durasi_tunggu != null
-          ? formatSeconds(item.durasi_tunggu)
-          : '-';
-        const durasiPerbaikan = item.durasi_perbaikan != null
-          ? formatSeconds(item.durasi_perbaikan)
-          : '-';
-        const totalPerbaikan = item.total_perbaikan != null
-          ? formatSeconds(item.total_perbaikan)
-          : '-';
-
-        if (item.total_perbaikan) totalSemua += item.total_perbaikan;
-
-        tbody.innerHTML += `
-          <tr>
-            <td>${i + 1}</td>
-            <td>${item.mesin}</td>
-            <td>${format(item.start_time)}</td>
-            <td>${format(item.repair_start_time)}</td>
-            <td>${format(item.end_time)}</td>
-            <td>${durasiTunggu}</td>
-            <td>${durasiPerbaikan}</td>
-            <td>${totalPerbaikan}</td>
-          </tr>
+      data.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.mesin}</td>
+          <td>${formatDate(item.start_time)}</td>
+          <td>${formatDate(item.repair_start_time)}</td>
+          <td>${formatDate(item.end_time)}</td>
+          <td>${formatDuration(item.durasi_tunggu)}</td>
+          <td>${formatDuration(item.durasi_perbaikan)}</td>
+          <td>${formatDuration(item.total_perbaikan)}</td>
         `;
+        tbody.appendChild(row);
+        if (item.end_time && item.durasi_perbaikan) {
+        totalSemua += item.total_perbaikan;
+      }
       });
-
-      document.getElementById('total-semua').innerText = formatSeconds(totalSemua);
+      document.getElementById('total-semua').innerText = formatDuration(totalSemua);
       document.getElementById('status').innerText =
         '✅ Terakhir diperbarui: ' + new Date().toLocaleTimeString();
-    })
-    .catch(err => {
-      console.error(err);
-      document.getElementById('status').innerText = '⚠️ Gagal memuat data';
-    });
-}
+    } catch (err) {
+      console.error("Gagal ambil data:", err);
+      document.querySelector("#dataTable tbody").innerHTML = 
+        "<tr><td colspan='7'>❌ Gagal ambil data</td></tr>";
+    }
+  }
 
-function format(isoString) {
-  if (!isoString) return '-';
-  const d = new Date(isoString);
-  return d.toLocaleString();
-}
 
-function formatSeconds(sec) {
-  const mins = Math.floor(sec / 60);
-  const secs = sec % 60;
-  return `${mins}m ${secs}s`;
-}
+ 
+    // Helper untuk format detik → hh:mm:ss
+    function formatDuration(seconds) {
+      if (!seconds && seconds !== 0) return '-';
+      const h = Math.floor(seconds / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const s = seconds % 60;
+      return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+    }
 
-// Jalankan dan auto-refresh
-fetchData();
-setInterval(fetchData, 5000);
-</script>
-
+    // Auto-refresh tiap 5 detik
+    fetchData(); // Panggil pertama kali
+    setInterval(fetchData, 5000);
+  </script>
 </body>
 </html>

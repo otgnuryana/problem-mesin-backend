@@ -7,9 +7,9 @@ const router = express.Router();
 const dataDir = path.join(__dirname, '../data');
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir);
 
-function getFilePath() {
-    const today = new Date().toISOString().slice(0, 10);
-    return path.join(dataDir, `${today}-downtime.json`);
+function getFilePath(tanggal = null) {
+    const dateStr = tanggal || new Date().toISOString().slice(0, 10);
+    return path.join(dataDir, `${dateStr}-downtime.json`);
 }
 
 function loadData(filePath) {
@@ -28,23 +28,59 @@ function saveData(filePath, data) {
 
 
 router.get('/data', (req, res) => {
-    const filePath = getFilePath();
-    const rawData = loadData(filePath);
+  const tanggal = req.query.tanggal;
+  const shift = parseInt(req.query.shift);
+  const hanyaBelumSelesai = req.query.belum_selesai === 'true';
 
-    // Buat salinan & tambah total_perbaikan di setiap entri
-    const data = rawData.map(entry => {
-        const tunggu = typeof entry.durasi_tunggu === 'number' ? entry.durasi_tunggu : 0;
-        const perbaikan = typeof entry.durasi_perbaikan === 'number' ? entry.durasi_perbaikan : 0;
+  // Validasi query
+  if (!tanggal || ![1, 2].includes(shift)) {
+    return res.status(400).json({ error: 'tanggal dan shift wajib diisi' });
+  }
 
-        return {
-            ...entry,
-            total_perbaikan: tunggu + perbaikan
-        };
-    });
+  const filePath = getFilePath(tanggal);
+  const dataHariIni = loadData(filePath);
 
-    res.json(data);
+  const dateObj = new Date(`${tanggal}T00:00:00`);
+  const nextDate = new Date(dateObj);
+  nextDate.setDate(dateObj.getDate() + 1);
+  const besokStr = nextDate.toISOString().slice(0, 10);
+
+  const dataBesok = shift === 2 ? loadData(getFilePath(besokStr)) : [];
+  const combinedData = [...dataHariIni, ...dataBesok];
+
+  // Hitung batas waktu shift
+  const shiftStart = new Date(`${tanggal}T${shift === 1 ? '06:00:00' : '19:00:00'}`);
+  const shiftEnd = shift === 1
+    ? new Date(`${tanggal}T19:00:00`)
+    : new Date(`${besokStr}T06:00:00`);
+
+  // Filter berdasarkan waktu start
+  let data = combinedData.filter(entry => {
+    if (!entry.start_time) return false;
+    const start = new Date(entry.start_time);
+    return start >= shiftStart && start < shiftEnd;
+  });
+
+  // Hitung total_perbaikan
+  data = data.map(entry => ({
+    ...entry,
+    total_perbaikan: (entry.durasi_tunggu || 0) + (entry.durasi_perbaikan || 0)
+  }));
+
+  if (hanyaBelumSelesai) {
+    data = data.filter(entry => !entry.end_time);
+  }
+
+  res.json(data);
 });
 
+
+
+
+function getTodayDate() {
+  const d = new Date();
+  return d.toISOString().split('T')[0]; // YYYY-MM-DD
+}
 
 
 // 1️⃣ Mulai downtime
