@@ -8,7 +8,7 @@ SERVER_URL = 'http://localhost:3000/downtime'  # Ganti jika server beda
 def kirim_ke_server(mesin, aksi):
     endpoint_map = {
         'START': 'start',
-        'REPAIR': 'repair-start',
+        'REPAIR-START': 'repair-start',
         'FINISH': 'finish'
     }
 
@@ -35,8 +35,8 @@ def baca_serial():
 
             print(f"📥 Serial masuk: {line}")
 
-            if ':' in line:
-                mesin, aksi = line.split(':', 1)
+            if '|' in line:
+                mesin, aksi = line.split('|', 1)
                 mesin = mesin.strip()
                 aksi = aksi.strip().upper()
                 kirim_ke_server(mesin, aksi)

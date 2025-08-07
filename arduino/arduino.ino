@@ -1,29 +1,33 @@
-const int pinA = 2;
-const int pinB = 3;
-String mesin = "D9-10";
+const int pinStart = 2;
+const int pinRepair = 3;
 
-int lastState = 0;
+bool sudahStart = false;
+bool sudahRepair = false;
+
+String idMesin = "D9-10";  // ganti sesuai mesin
 
 void setup() {
+  pinMode(pinStart, INPUT_PULLUP);
+  pinMode(pinRepair, INPUT_PULLUP);
   Serial.begin(9600);
-  pinMode(pinA, INPUT_PULLUP);
-  pinMode(pinB, INPUT_PULLUP);
 }
 
 void loop() {
-  bool a = !digitalRead(pinA); // HIGH jika terhubung ke GND
-  bool b = !digitalRead(pinB);
+  bool startAktif = digitalRead(pinStart) == LOW;
+  bool repairAktif = digitalRead(pinRepair) == LOW;
 
-  if (a && b && lastState != 1) {
-    Serial.println(mesin + ":START");
-    lastState = 1;
-  } else if (!a && b && lastState != 2) {
-    Serial.println(mesin + ":REPAIR");
-    lastState = 2;
-  } else if (!a && !b && lastState != 0) {
-    Serial.println(mesin + ":FINISH");
-    lastState = 0;
+  if (startAktif && repairAktif && !sudahStart) {
+    Serial.println(idMesin + "|START");
+    sudahStart = true;
+    sudahRepair = false;
+  } else if (!startAktif && repairAktif && !sudahRepair) {
+    Serial.println(idMesin + "|REPAIR-START");
+    sudahRepair = true;
+  } else if (!startAktif && !repairAktif && (sudahStart || sudahRepair)) {
+    Serial.println(idMesin + "|FINISH");
+    sudahStart = false;
+    sudahRepair = false;
   }
 
-  delay(100);
+  delay(300);
 }
