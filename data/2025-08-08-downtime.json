@@ -1,0 +1,63 @@
+[
+  {
+    "mesin": "D9-20",
+    "start_time": "2025-08-08T07:29:58.714Z",
+    "repair_start_time": "2025-08-08T07:30:09.519Z",
+    "end_time": "2025-08-08T07:30:18.214Z",
+    "durasi_tunggu": 10,
+    "durasi_perbaikan": 8
+  },
+  {
+    "mesin": "D9-20",
+    "start_time": "2025-08-08T08:03:45.710Z",
+    "repair_start_time": "2025-08-08T08:03:55.328Z",
+    "end_time": "2025-08-08T08:19:01.715Z",
+    "durasi_tunggu": 9,
+    "durasi_perbaikan": 906
+  },
+  {
+    "mesin": "D9-20",
+    "start_time": "2025-08-08T09:02:47.043Z",
+    "repair_start_time": "2025-08-08T09:03:02.962Z",
+    "end_time": "2025-08-08T09:03:08.357Z",
+    "durasi_tunggu": 15,
+    "durasi_perbaikan": 5
+  },
+  {
+    "mesin": "D9-20",
+    "start_time": "2025-08-08T09:12:22.203Z",
+    "repair_start_time": "2025-08-08T09:12:23.034Z",
+    "end_time": "2025-08-08T09:12:33.616Z",
+    "durasi_tunggu": 0,
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-20",
+    "start_time": "2025-08-08T09:12:48.007Z",
+    "repair_start_time": "2025-08-08T09:14:01.533Z",
+    "end_time": "2025-08-08T09:14:21.028Z",
+    "durasi_tunggu": 73,
+    "durasi_perbaikan": 19
+  },
+  {
+    "mesin": "D9-20",
+    "start_time": "2025-08-08T09:15:57.064Z",
+    "repair_start_time": "2025-08-08T09:16:08.484Z",
+    "end_time": "2025-08-08T09:16:22.880Z",
+    "durasi_tunggu": 11,
+    "durasi_perbaikan": 14
+  },
+  {
+    "mesin": "D9-20",
+    "start_time": "2025-08-08T09:35:39.369Z",
+    "repair_start_time": "2025-08-08T09:35:51.689Z",
+    "end_time": "2025-08-08T09:36:03.384Z",
+    "durasi_tunggu": 12,
+    "durasi_perbaikan": 11
+  },
+  {
+    "mesin": "D9-20",
+    "start_time": "2025-08-08T09:36:41.487Z",
+    "repair_start_time": "2025-08-08T09:36:51.997Z"
+  }
+]

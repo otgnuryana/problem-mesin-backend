@@ -1,0 +1,17 @@
+body { font-family: sans-serif; margin: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 30px; margin-bottom: 30px; }
+    th, td { padding: 8px; border: 1px solid #6cd9ec; text-align: left; }
+    th { background: #3cb4c4; }
+      /* Pending = belum mulai perbaikan */
+  .highlight-pending {
+    background-color: yellow;
+    animation: blink-pending 1s infinite;
+  }
+  @keyframes blink-pending {
+    50% { background-color: orange; }
+  }
+
+  /* Sedang perbaikan */
+  .highlight-repair {
+    background-color: rgb(243, 100, 107);
+  }
