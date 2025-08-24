@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const ExcelJS = require('exceljs');
 
 // Fungsi untuk mendapatkan file path berdasarkan tanggal
 function getFilePath(tanggal) {
@@ -64,5 +65,90 @@ router.get('/data', (req, res) => {
 
   res.json(data);
 });
+
+
+
+//  Export ke Excel dengan filter shift
+router.get('/export', async (req, res) => {
+  try {
+    const { tanggal, shift } = req.query; // ambil dari query string
+    const filePath = getFilePath(tanggal);
+    let data = loadData(filePath);
+
+    // ---- Filter shift (sama logika dengan /data) ----
+    if (shift) {
+      const shiftNum = parseInt(shift, 10);
+
+      data = data.filter(d => {
+        if (!d.start_time) return false;
+        const start = new Date(d.start_time);
+        const jam = start.getHours();
+
+        if (shiftNum === 1) {
+          // Shift 1 = 06:00–19:00
+          return jam >= 6 && jam < 19;
+        } else if (shiftNum === 2) {
+          // Shift 2 = 19:00–06:00 
+          return jam >= 19 || jam < 6;
+        }
+        return true;
+      });
+    }
+
+    const wb = new ExcelJS.Workbook();
+    const ws = wb.addWorksheet('Downtime');
+
+    // Header
+    ws.addRow([
+      "Mesin",
+      "Mulai Problem",
+      "Mulai Perbaikan",
+      "Selesai",
+      "Waktu Tunggu",
+      "Waktu Perbaikan",
+      "Total Downtime"
+    ]);
+
+    // Format kolom durasi jadi jam:menit:detik
+    ws.getColumn(5).numFmt = "hh:mm:ss";
+    ws.getColumn(6).numFmt = "hh:mm:ss";
+    ws.getColumn(7).numFmt = "hh:mm:ss";
+
+    // Data rows
+    data.forEach(d => {
+      const wait = d.durasi_tunggu != null ? d.durasi_tunggu / 86400 : null;
+      const repair = d.durasi_perbaikan != null ? d.durasi_perbaikan / 86400 : null;
+      const total = (d.durasi_tunggu != null && d.durasi_perbaikan != null)
+        ? (d.durasi_tunggu + d.durasi_perbaikan) / 86400
+        : null;
+
+      ws.addRow([
+        d.mesin || "-",
+        d.start_time || "-",
+        d.repair_start_time || "-",
+        d.end_time || "-",
+        wait,
+        repair,
+        total
+      ]);
+    });
+
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    );
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename="downtime-${tanggal || new Date().toISOString().slice(0,10)}-shift${shift || 'all'}.xlsx"`
+    );
+
+    await wb.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    console.error("❌ Error export Excel:", err);
+    res.status(500).json({ error: "Gagal export Excel" });
+  }
+});
+
 
 module.exports = router;

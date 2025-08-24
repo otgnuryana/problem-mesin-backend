@@ -92,6 +92,20 @@ function formatDate(dateString) {
       return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
     }
 
+
+
+    
+
+      // export ke excel
+      function exportExcel() {
+        const tanggal = document.getElementById("tanggal").value;
+        const shift = document.getElementById("shift").value;
+
+        let url = `/export?tanggal=${tanggal}&shift=${shift}`;
+        window.location.href = url;
+      }
+
+
     // Auto-refresh tiap 5 detik
     fetchData(); // Panggil pertama kali
     setInterval(fetchData, 5000);
