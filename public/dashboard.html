@@ -8,7 +8,7 @@
 </head>
 <body>
   <div>
-    <h1>📊 Dashboard Downtime Mesin Realtime</h1>
+    <h1>♨️Dashboard Downtime Realtime</h1>
 
     <div class="filter">
       <label for="tanggal">Tanggal: </label>
@@ -23,8 +23,11 @@
         <label>
           <input type="checkbox" id="belum_selesai" /> Hanya yang belum selesai
         </label>
+        <button onclick="fetchData()">Tampilkan➡️</button>
+        <button>
+          <a href="/downtime/export" style="text-decoration: none;" target="_blank">Export ke Excel⬇️</a>
+        </button>
 
-        <button onclick="fetchData()">🔄 Tampilkan</button>
     </div>
   </div>
 
@@ -43,7 +46,7 @@
     <tbody></tbody>
     <tfoot>
   <tr>
-    <td colspan="6" style="text-align: right;"><strong>Total Semua Perbaikan</strong></td>
+    <td colspan="6" style="text-align: right;"><strong>Total Semua Downtime</strong></td>
     <td id="total-semua">-</td>
   </tr>
 </tfoot>

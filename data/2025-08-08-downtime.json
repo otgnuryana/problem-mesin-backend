@@ -58,6 +58,9 @@
   {
     "mesin": "D9-20",
     "start_time": "2025-08-08T09:36:41.487Z",
-    "repair_start_time": "2025-08-08T09:36:51.997Z"
+    "repair_start_time": "2025-08-08T09:36:51.997Z",
+    "end_time": "2025-08-08T09:39:19.004Z",
+    "durasi_tunggu": 10,
+    "durasi_perbaikan": 147
   }
 ]

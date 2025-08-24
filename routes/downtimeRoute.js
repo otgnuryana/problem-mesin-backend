@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const router = express.Router();
+const ExcelJS = require('exceljs');
 
 
 const dataDir = path.join(__dirname, '../data');
@@ -145,6 +146,73 @@ router.post('/finish', (req, res) => {
     saveData(filePath, data);
     console.log(`✅ Perbaikan selesai untuk mesin ${mesin}`);
     res.json({ status: 'ok', message: 'Perbaikan selesai' });
+});
+
+// export to excel
+
+router.get('/export', async (req, res) => {
+  try {
+    const filePath = getFilePath();
+    const data = loadData(filePath);
+
+    const wb = new ExcelJS.Workbook();
+    const ws = wb.addWorksheet('Downtime');
+
+    // Header
+    ws.addRow([
+      "Mesin",
+      "Mulai Problem",
+      "Mulai Perbaikan",
+      "Selesai",
+      "Waktu Tunggu",
+      "Waktu Perbaikan",
+      "Total Downtime"
+    ]);
+
+
+    ws.getColumn(5).numFmt = "hh:mm:ss";
+    ws.getColumn(6).numFmt = "hh:mm:ss";
+    ws.getColumn(7).numFmt = "hh:mm:ss";
+
+    data.forEach(d => {
+      const wait = (d.start_time && d.repair_start_time)
+        ? (new Date(d.repair_start_time) - new Date(d.start_time)) / 1000 / 86400
+        : null;
+
+      const repair = (d.repair_start_time && d.end_time)
+        ? (new Date(d.end_time) - new Date(d.repair_start_time)) / 1000 / 86400
+        : null;
+
+      const total = (d.start_time && d.end_time)
+        ? (new Date(d.end_time) - new Date(d.start_time)) / 1000 / 86400
+        : null;
+
+      ws.addRow([
+        d.mesin || "-",
+        d.start_time || "-",
+        d.repair_start_time || "-",
+        d.end_time || "-",
+        wait,
+        repair,
+        total
+      ]);
+    });
+
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    );
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename="downtime-${new Date().toISOString().slice(0,10)}.xlsx"`
+    );
+
+    await wb.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    console.error("❌ Error export Excel:", err);
+    res.status(500).json({ error: "Gagal export Excel" });
+  }
 });
 
 

@@ -1,0 +1,26 @@
+[
+  {
+    "mesin": "D9-10",
+    "start_time": "2025-08-24T08:33:27.869Z",
+    "repair_start_time": "2025-08-24T08:33:37.885Z",
+    "end_time": "2025-08-24T08:33:47.901Z",
+    "durasi_tunggu": 10,
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-12",
+    "start_time": "2025-08-24T01:05:30.000Z",
+    "repair_start_time": "2025-08-24T01:10:00.000Z",
+    "end_time": "2025-08-24T01:25:10.000Z",
+    "durasi_tunggu": 270,
+    "durasi_perbaikan": 910
+  },
+  {
+    "mesin": "D9-10",
+    "start_time": "2025-08-24T20:15:05.000Z",
+    "repair_start_time": "2025-08-24T20:25:15.000Z",
+    "end_time": "2025-08-24T20:40:45.000Z",
+    "durasi_tunggu": 610,
+    "durasi_perbaikan": 930
+  }
+]
