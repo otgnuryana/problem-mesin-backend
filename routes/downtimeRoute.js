@@ -86,12 +86,13 @@ function getTodayDate() {
 
 // 1️⃣ Mulai downtime
 router.post('/start', (req, res) => {
-    const { mesin } = req.body;
+    const { mesin, carline } = req.body;
     const filePath = getFilePath();
     const data = loadData(filePath);
 
     data.push({
         mesin,
+        carline,
         start_time: new Date().toISOString()
     });
 
@@ -99,7 +100,12 @@ router.post('/start', (req, res) => {
     console.log(`⏱️ Downtime mulai dicatat untuk mesin ${mesin}`);
     res.json({ status: 'ok', message: 'Downtime dimulai' });
 });
-
+// Tambah di atas
+function calculateDuration(start, end) {
+    const s = new Date(start);
+    const e = new Date(end);
+    return Math.floor((e - s) / 1000); // dalam detik
+}
 // 2️⃣ Mulai perbaikan
 router.post('/repair-start', (req, res) => {
     const { mesin } = req.body;
@@ -110,18 +116,14 @@ router.post('/repair-start', (req, res) => {
     if (!lastEntry) return res.status(404).json({ status: 'error', message: 'Downtime belum dimulai' });
 
     lastEntry.repair_start_time = new Date().toISOString();
+    lastEntry.durasi_tunggu = calculateDuration(lastEntry.start_time, lastEntry.repair_start_time); // detik
     saveData(filePath, data);
     console.log(`🔧 Perbaikan dimulai untuk mesin ${mesin}`);
     res.json({ status: 'ok', message: 'Perbaikan dimulai' });
 });
 
 
-// Tambah di atas
-function calculateDuration(start, end) {
-    const s = new Date(start);
-    const e = new Date(end);
-    return Math.floor((e - s) / 1000); // dalam detik
-}
+
 
 // Ubah endpoint /finish
 router.post('/finish', (req, res) => {
@@ -148,7 +150,36 @@ router.post('/finish', (req, res) => {
     res.json({ status: 'ok', message: 'Perbaikan selesai' });
 });
 
+router.post('/part-wait-start', (req, res) => {
+  const { mesin, carline } = req.body;
+  const filePath = getFilePath();
+  const data = loadData(filePath);
 
+  let item = data.find(r => r.mesin === mesin && r.carline === carline && !r.end_time);
+  if (!item) return res.status(404).json({ error: "Tidak ada downtime aktif" });
+
+  item.part_wait_start = new Date().toISOString();
+  saveData(filePath, data);
+
+  res.json({ success: true, item });
+});
+
+// Selesai tunggu part
+router.post('/part-wait-finish', (req, res) => {
+  const { mesin, carline } = req.body;
+  const filePath = getFilePath();
+  const data = loadData(filePath);
+
+  let item = data.find(r => r.mesin === mesin && r.carline === carline && !r.end_time);
+  if (!item || !item.part_wait_start) return res.status(404).json({ error: "Belum ada tunggu part" });
+
+  item.part_wait_end = new Date().toISOString();
+  item.durasi_tunggu_part = Math.floor((new Date(item.part_wait_end) - new Date(item.part_wait_start)) / 1000);
+
+  saveData(filePath, data);
+
+  res.json({ success: true, item });
+});
 
 
 module.exports = router;

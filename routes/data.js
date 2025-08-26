@@ -101,6 +101,7 @@ router.get('/export', async (req, res) => {
     // Header
     ws.addRow([
       "Mesin",
+      "Carline",
       "Mulai Problem",
       "Mulai Perbaikan",
       "Selesai",
@@ -110,9 +111,9 @@ router.get('/export', async (req, res) => {
     ]);
 
     // Format kolom durasi jadi jam:menit:detik
-    ws.getColumn(5).numFmt = "hh:mm:ss";
     ws.getColumn(6).numFmt = "hh:mm:ss";
     ws.getColumn(7).numFmt = "hh:mm:ss";
+    ws.getColumn(8).numFmt = "hh:mm:ss";
 
     // Data rows
     data.forEach(d => {
@@ -124,6 +125,7 @@ router.get('/export', async (req, res) => {
 
       ws.addRow([
         d.mesin || "-",
+        d.carline || "-",
         d.start_time || "-",
         d.repair_start_time || "-",
         d.end_time || "-",

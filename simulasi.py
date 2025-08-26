@@ -4,7 +4,7 @@ import time
 SERVER = "http://localhost:3000"  # Ganti jika server beda
 
 MESIN = "D9-10"
-
+CARLINE = "Daihatsu"
 def post(endpoint, payload):
     url = f"{SERVER}/downtime/{endpoint}"
     res = requests.post(url, json=payload)
@@ -19,7 +19,7 @@ def post(endpoint, payload):
 # 1. Downtime dimulai
 post("start", {
     "mesin": MESIN,
-    "timestamp": "2025-08-06T10:00:00"
+    "carline": CARLINE
 })
 
 time.sleep(10)  # jeda simulasi
@@ -27,13 +27,13 @@ time.sleep(10)  # jeda simulasi
 # 2. Perbaikan dimulai
 post("repair-start", {
     "mesin": MESIN,
-    "timestamp": "2025-08-06T10:10:00"
+    "carline": CARLINE
 })
 
-time.sleep(10)
+time.sleep(40)
 
 # 3. Perbaikan selesai
 post("finish", {
     "mesin": MESIN,
-    "timestamp": "2025-08-06T10:25:00"
+    "carline": CARLINE
 })

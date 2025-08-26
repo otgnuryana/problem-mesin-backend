@@ -4,7 +4,6 @@ const int pinRepair = 3;
 bool sudahStart = false;
 bool sudahRepair = false;
 
-String idMesin = "D9-10";  // ganti sesuai mesin
 
 void setup() {
   pinMode(pinStart, INPUT_PULLUP);
@@ -17,14 +16,14 @@ void loop() {
   bool repairAktif = digitalRead(pinRepair) == LOW;
 
   if (startAktif && repairAktif && !sudahStart) {
-    Serial.println(idMesin + "|START");
+    Serial.println("|START");
     sudahStart = true;
     sudahRepair = false;
   } else if (!startAktif && repairAktif && !sudahRepair) {
-    Serial.println(idMesin + "|REPAIR-START");
+    Serial.println("|REPAIR-START");
     sudahRepair = true;
   } else if (!startAktif && !repairAktif && (sudahStart || sudahRepair)) {
-    Serial.println(idMesin + "|FINISH");
+    Serial.println("|FINISH");
     sudahStart = false;
     sudahRepair = false;
   }

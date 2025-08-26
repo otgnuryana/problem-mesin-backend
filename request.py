@@ -1,11 +1,14 @@
 import serial
 import requests
 
-PORT = 'COM11'  # Ganti sesuai port Arduino kamu
+PORT = 'COM11'   # Ganti sesuai port Arduino
 BAUD = 9600
-SERVER_URL = 'http://localhost:3000/downtime'  # Ganti jika server beda
+SERVER_URL = 'http://localhost:3000/downtime'  # Alamat server
 
-def kirim_ke_server(mesin, aksi):
+MESIN = 'D9-10'       # Nama mesin
+CARLINE = 'Daihatsu'  # Area Carline
+
+def kirim_ke_server(aksi):
     endpoint_map = {
         'START': 'start',
         'REPAIR-START': 'repair-start',
@@ -18,7 +21,11 @@ def kirim_ke_server(mesin, aksi):
 
     try:
         url = f"{SERVER_URL}/{endpoint_map[aksi]}"
-        response = requests.post(url, json={'mesin': mesin})
+        payload = {
+            'mesin': MESIN,
+            'carline': CARLINE
+        }
+        response = requests.post(url, json=payload)
         print(f"📡 Kirim ke {url} => {response.status_code}, {response.text}")
     except Exception as e:
         print(f"❌ Gagal kirim request: {e}")
@@ -26,7 +33,7 @@ def kirim_ke_server(mesin, aksi):
 def baca_serial():
     try:
         ser = serial.Serial(PORT, BAUD, timeout=1)
-        print(f"✅ Terhubung ke {PORT} pada {BAUD}bps")
+        print(f"✅ Terhubung ke {PORT} pada {BAUD}bps (mesin: {MESIN}, carline: {CARLINE})")
 
         while True:
             line = ser.readline().decode().strip()
@@ -34,14 +41,7 @@ def baca_serial():
                 continue
 
             print(f"📥 Serial masuk: {line}")
-
-            if '|' in line:
-                mesin, aksi = line.split('|', 1)
-                mesin = mesin.strip()
-                aksi = aksi.strip().upper()
-                kirim_ke_server(mesin, aksi)
-            else:
-                print("⚠️ Format salah, abaikan")
+            kirim_ke_server(line.upper())
 
     except serial.SerialException as e:
         print(f"❌ Gagal buka port serial: {e}")

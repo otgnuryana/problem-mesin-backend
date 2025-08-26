@@ -1,0 +1,174 @@
+[
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:06:08.115Z",
+    "repair_start_time": "2025-08-26T17:06:18.130Z",
+    "durasi_tunggu": 10,
+    "end_time": "2025-08-26T17:06:28.152Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:07:41.191Z",
+    "repair_start_time": "2025-08-26T17:07:51.208Z",
+    "durasi_tunggu": 10,
+    "end_time": "2025-08-26T17:08:01.226Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:14:07.244Z",
+    "repair_start_time": "2025-08-26T17:14:17.259Z",
+    "durasi_tunggu": 10,
+    "end_time": "2025-08-26T17:14:27.276Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:18:06.400Z",
+    "repair_start_time": "2025-08-26T17:18:16.418Z",
+    "durasi_tunggu": 10,
+    "end_time": "2025-08-26T17:18:26.436Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:21:28.562Z",
+    "repair_start_time": "2025-08-26T17:21:38.577Z",
+    "durasi_tunggu": 10,
+    "end_time": "2025-08-26T17:21:48.593Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:22:06.282Z",
+    "repair_start_time": "2025-08-26T17:22:16.300Z",
+    "durasi_tunggu": 10,
+    "part_wait_start": "2025-08-26T17:22:20.264Z",
+    "end_time": "2025-08-26T17:22:26.315Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:23:42.942Z",
+    "repair_start_time": "2025-08-26T17:23:52.963Z",
+    "durasi_tunggu": 10,
+    "part_wait_start": "2025-08-26T17:23:55.167Z",
+    "end_time": "2025-08-26T17:24:02.980Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:24:12.789Z",
+    "repair_start_time": "2025-08-26T17:24:22.809Z",
+    "durasi_tunggu": 10,
+    "part_wait_start": "2025-08-26T17:24:24.511Z",
+    "part_wait_end": "2025-08-26T17:24:28.380Z",
+    "durasi_tunggu_part": 3,
+    "end_time": "2025-08-26T17:24:32.824Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:30:40.311Z",
+    "repair_start_time": "2025-08-26T17:30:50.329Z",
+    "durasi_tunggu": 10,
+    "end_time": "2025-08-26T17:31:00.335Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:31:16.825Z",
+    "repair_start_time": "2025-08-26T17:31:26.845Z",
+    "durasi_tunggu": 10,
+    "end_time": "2025-08-26T17:31:36.851Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:32:06.909Z",
+    "repair_start_time": "2025-08-26T17:32:16.927Z",
+    "durasi_tunggu": 10,
+    "end_time": "2025-08-26T17:32:26.933Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:33:32.930Z",
+    "repair_start_time": "2025-08-26T17:33:42.948Z",
+    "durasi_tunggu": 10,
+    "part_wait_start": "2025-08-26T17:33:46.129Z",
+    "end_time": "2025-08-26T17:33:52.962Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:34:21.647Z",
+    "repair_start_time": "2025-08-26T17:34:31.666Z",
+    "durasi_tunggu": 10,
+    "part_wait_start": "2025-08-26T17:34:33.336Z",
+    "part_wait_end": "2025-08-26T17:34:36.562Z",
+    "durasi_tunggu_part": 3,
+    "end_time": "2025-08-26T17:34:41.685Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:35:34.182Z",
+    "repair_start_time": "2025-08-26T17:35:44.203Z",
+    "durasi_tunggu": 10,
+    "part_wait_start": "2025-08-26T17:35:47.758Z",
+    "part_wait_end": "2025-08-26T17:35:52.351Z",
+    "durasi_tunggu_part": 4,
+    "end_time": "2025-08-26T17:35:54.221Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:36:39.095Z",
+    "repair_start_time": "2025-08-26T17:36:49.114Z",
+    "durasi_tunggu": 10,
+    "part_wait_start": "2025-08-26T17:36:50.744Z",
+    "part_wait_end": "2025-08-26T17:36:54.190Z",
+    "durasi_tunggu_part": 3,
+    "end_time": "2025-08-26T17:36:59.129Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:37:34.201Z",
+    "repair_start_time": "2025-08-26T17:37:44.218Z",
+    "durasi_tunggu": 10,
+    "part_wait_start": "2025-08-26T17:37:48.397Z",
+    "end_time": "2025-08-26T17:37:54.234Z",
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-26T17:38:17.675Z",
+    "repair_start_time": "2025-08-26T17:38:27.694Z",
+    "durasi_tunggu": 10,
+    "part_wait_start": "2025-08-26T17:38:32.124Z",
+    "part_wait_end": "2025-08-26T17:38:35.669Z",
+    "durasi_tunggu_part": 3,
+    "end_time": "2025-08-26T17:39:07.713Z",
+    "durasi_perbaikan": 40
+  }
+]

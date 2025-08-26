@@ -57,15 +57,46 @@ function formatDate(dateString) {
         } else if (item.repair_start_time && !item.end_time) {
           row.classList.add("highlight-repair"); // class saat sedang perbaikan
         }
-        row.innerHTML = `
-          <td>${item.mesin}</td>
-          <td>${formatDate(item.start_time)}</td>
-          <td>${formatDate(item.repair_start_time)}</td>
-          <td>${formatDate(item.end_time)}</td>
-          <td>${formatDuration(item.durasi_tunggu)}</td>
-          <td>${formatDuration(item.durasi_perbaikan)}</td>
-          <td>${formatDuration(item.total_perbaikan)}</td>
-        `;
+
+let colTungguPart = "-"; // default
+
+if (item.repair_start_time) {
+  if (item.end_time) {
+    //  Sudah ada selesai perbaikan
+    if (item.part_wait_start && item.part_wait_end) {
+      // Ada data tunggu part → tampilkan durasi
+      colTungguPart = formatDuration(item.durasi_tunggu_part);
+    } 
+    // Kalau tidak ada data tunggu part → tetap "-"
+  } else {
+    //  Masih dalam mode perbaikan (belum selesai)
+    if (item.part_wait_start && item.part_wait_end) {
+      colTungguPart = formatDuration(item.durasi_tunggu_part);
+    } else if (item.part_wait_start && !item.part_wait_end) {
+      colTungguPart = `
+        <button disabled>Mulai</button>
+        <button onclick="finishPartWait('${item.mesin}', '${item.carline}')">Selesai</button>
+      `;
+    } else {
+      colTungguPart = `
+        <button onclick="startPartWait('${item.mesin}', '${item.carline}')">Mulai</button>
+      `;
+    }
+  }
+}
+
+
+  row.innerHTML = `
+    <td>${item.mesin}</td>
+    <td>${item.carline}</td>
+    <td>${formatDate(item.start_time)}</td>
+    <td>${formatDate(item.repair_start_time)}</td>
+    <td>${formatDuration(item.durasi_tunggu)}</td>
+    <td>${formatDate(item.end_time)}</td>
+    <td>${formatDuration(item.durasi_perbaikan)}</td>
+    <td>${colTungguPart}</td>   <!-- 👈 Tambahan di sini -->
+    <td>${formatDuration(item.total_perbaikan)}</td>
+  `;
         tbody.appendChild(row);
         if (item.end_time && item.durasi_perbaikan) {
         totalSemua += item.total_perbaikan;
@@ -77,9 +108,44 @@ function formatDate(dateString) {
     } catch (err) {
       console.error("Gagal ambil data:", err);
       document.querySelector("#dataTable tbody").innerHTML = 
-        "<tr><td colspan='7'>❌ Gagal ambil data</td></tr>";
+        "<tr><td colspan='8'>❌ Gagal ambil data</td></tr>";
     }
   }
+
+async function startPartWait(mesin, carline) {
+  try {
+    const res = await fetch('/downtime/part-wait-start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mesin, carline })
+    });
+    const data = await res.json();
+    // alert("Tunggu part dimulai untuk mesin " + mesin);
+
+    // ✅ reload data dashboard
+    fetchData();
+
+  } catch (err) {
+    console.error(err);
+    alert("Gagal memulai tunggu part");
+  }
+}
+
+async function finishPartWait(mesin, carline) {
+  try {
+    const res = await fetch('/downtime/part-wait-finish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mesin, carline })
+    });
+    const data = await res.json();
+    alert("Tunggu part selesai ");
+
+  } catch (err) {
+    console.error(err);
+    alert("Gagal menyelesaikan tunggu part");
+  }
+}
 
 
  
@@ -108,4 +174,4 @@ function formatDate(dateString) {
 
     // Auto-refresh tiap 5 detik
     fetchData(); // Panggil pertama kali
-    setInterval(fetchData, 5000);
+    setInterval(fetchData, 3000);

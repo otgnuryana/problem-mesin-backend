@@ -1,6 +1,7 @@
 [
   {
     "mesin": "D9-10",
+    "carline": "Daihatsu",
     "start_time": "2025-08-24T08:33:27.869Z",
     "repair_start_time": "2025-08-24T08:33:37.885Z",
     "end_time": "2025-08-24T08:33:47.901Z",
@@ -9,6 +10,7 @@
   },
   {
     "mesin": "D9-12",
+    "carline": "Daihatsu",
     "start_time": "2025-08-24T01:05:30.000Z",
     "repair_start_time": "2025-08-24T01:10:00.000Z",
     "end_time": "2025-08-24T01:25:10.000Z",
@@ -17,10 +19,38 @@
   },
   {
     "mesin": "D9-10",
+    "carline": "Daihatsu",
     "start_time": "2025-08-24T20:15:05.000Z",
     "repair_start_time": "2025-08-24T20:25:15.000Z",
     "end_time": "2025-08-24T20:40:45.000Z",
     "durasi_tunggu": 610,
     "durasi_perbaikan": 930
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-24T10:36:29.167Z",
+    "repair_start_time": "2025-08-24T10:36:39.183Z",
+    "end_time": "2025-08-24T10:36:49.205Z",
+    "durasi_tunggu": 10,
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-24T10:40:38.236Z",
+    "repair_start_time": "2025-08-24T10:40:48.251Z",
+    "end_time": "2025-08-24T10:40:58.268Z",
+    "durasi_tunggu": 10,
+    "durasi_perbaikan": 10
+  },
+  {
+    "mesin": "D9-10",
+    "carline": "Daihatsu",
+    "start_time": "2025-08-24T11:03:04.306Z",
+    "repair_start_time": "2025-08-24T11:03:14.354Z",
+    "end_time": "2025-08-24T11:03:24.383Z",
+    "durasi_tunggu": 10,
+    "durasi_perbaikan": 10
   }
 ]
