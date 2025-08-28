@@ -74,12 +74,12 @@ if (item.repair_start_time) {
       colTungguPart = formatDuration(item.durasi_tunggu_part);
     } else if (item.part_wait_start && !item.part_wait_end) {
       colTungguPart = `
-        <button disabled>Mulai</button>
-        <button onclick="finishPartWait('${item.mesin}', '${item.carline}')">Selesai</button>
+        <button class="btn btn-success" disabled>Mulai</button>
+        <button class="btn btn-danger" onclick="finishPartWait('${item.mesin}', '${item.carline}')">Selesai</button>
       `;
     } else {
       colTungguPart = `
-        <button onclick="startPartWait('${item.mesin}', '${item.carline}')">Mulai</button>
+        <button class="btn btn-success" onclick="startPartWait('${item.mesin}', '${item.carline}')">Mulai</button>
       `;
     }
   }
@@ -112,6 +112,25 @@ if (item.repair_start_time) {
     }
   }
 
+// Fungsi tampilkan notifikasi Sukses
+function showNotif(message, type = "success") {
+  const notifArea = document.getElementById("notifArea");
+  const wrapper = document.createElement("div");
+
+  wrapper.innerHTML = `
+    <div class="alert alert-${type} alert-dismissible fade show shadow" role="alert">
+      ${message}
+    </div>
+  `;
+
+  notifArea.appendChild(wrapper);
+
+  // Auto hilang setelah 3 detik
+  setTimeout(() => {
+    wrapper.remove();
+  }, 3000);
+}
+
 async function startPartWait(mesin, carline) {
   try {
     const res = await fetch('/downtime/part-wait-start', {
@@ -120,16 +139,16 @@ async function startPartWait(mesin, carline) {
       body: JSON.stringify({ mesin, carline })
     });
     const data = await res.json();
-    // alert("Tunggu part dimulai untuk mesin " + mesin);
-
+    showNotif("Tunggu part dimulai untuk mesin " + mesin);
     // ✅ reload data dashboard
     fetchData();
 
   } catch (err) {
     console.error(err);
-    alert("Gagal memulai tunggu part");
+      showNotif("Gagal memulai Tunggu Part!", "danger");
   }
 }
+
 
 async function finishPartWait(mesin, carline) {
   try {
@@ -139,11 +158,11 @@ async function finishPartWait(mesin, carline) {
       body: JSON.stringify({ mesin, carline })
     });
     const data = await res.json();
-    alert("Tunggu part selesai ");
+  showNotif("Waktu tunggu part selesai dicatat !")
 
   } catch (err) {
     console.error(err);
-    alert("Gagal menyelesaikan tunggu part");
+  showNotif("Gagal mencatat Tunggu Part!", "danger");
   }
 }
 

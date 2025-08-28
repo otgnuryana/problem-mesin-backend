@@ -4,30 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard Downtime Mesin</title>
+  <link rel="stylesheet" href="/pkg/css/bootstrap.min.css">
   <link rel="stylesheet" href="/pkg/css/dashboard.css">
 </head>
 <body>
-  <div>
-    <h1>♨️Dashboard Downtime Realtime</h1>
+<div class="container-fluid my-3">
+  <h1 class="mb-4">♨️ Dashboard Downtime Realtime</h1>
 
-    <div class="filter">
-      <label for="tanggal">Tanggal: </label>
-        <input type="date" id="tanggal" />
-        
-        <label for="shift">Shift: </label>
-        <select id="shift">
+  <form class="form-row d-flex align-items-center justify-content-between mb-3">
+    
+    <!-- Group kiri -->
+    <div class="d-flex align-items-center flex-wrap">
+      <!-- Tanggal -->
+      <div class="form-group mx-2">
+        <input type="date" id="tanggal" class="form-control" />
+      </div>
+
+      <!-- Shift -->
+      <div class="form-group mx-2">
+        <select id="shift" class="form-control">
           <option value="1">Shift 1 (06:00–19:00)</option>
           <option value="2">Shift 2 (19:00–06:00)</option>
         </select>
+      </div>
 
-        <label>
-          <input type="checkbox" id="belum_selesai" /> Hanya yang belum selesai
+      <!-- Checkbox -->
+      <div class="form-check mx-3">
+        <input type="checkbox" class="form-check-input" id="belum_selesai" />
+        <label class="form-check-label" for="belum_selesai">
+          Hanya yang belum selesai
         </label>
-        <button onclick="fetchData()">Tampilkan➡️</button>
-        <button onclick="exportExcel()">Export ke Excel ⬇️</button>
+      </div>
 
+      <!-- Tombol tampilkan -->
+      <!-- <button type="button" class="btn btn-primary mx-2" onclick="fetchData()">Tampilkan</button> -->
     </div>
-  </div>
+
+    <!-- Tombol export di kanan -->
+    <div>
+      <button type="button" class="btn btn-success" onclick="exportExcel()">Export ke Excel</button>
+    </div>
+  </form>
+</div>
+
 
   <table id="dataTable">
     <thead>
@@ -56,6 +75,7 @@
     <div class="status">
       <p id="status"></p>
     </div>
+<div id="notifArea" class="position-fixed top-0 end-0 p-3" style="z-index: 9999;"></div>
 
 <script src="/pkg/js/dashboard.js"></script>
 </body>

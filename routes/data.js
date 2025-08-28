@@ -66,6 +66,14 @@ router.get('/data', (req, res) => {
   res.json(data);
 });
 
+function formatDate(dateString) {
+    if (!dateString) return "-";
+    const date = new Date(dateString);
+    return date.toLocaleString("id-ID", {
+      timeZone: "Asia/Jakarta",
+      hour12: false,
+    });
+  }
 
 
 //  Export ke Excel dengan filter shift
@@ -88,7 +96,7 @@ router.get('/export', async (req, res) => {
           // Shift 1 = 06:00–19:00
           return jam >= 6 && jam < 19;
         } else if (shiftNum === 2) {
-          // Shift 2 = 19:00–06:00 
+          // Shift 2 = 19:00–06:00
           return jam >= 19 || jam < 6;
         }
         return true;
@@ -107,6 +115,7 @@ router.get('/export', async (req, res) => {
       "Selesai",
       "Waktu Tunggu",
       "Waktu Perbaikan",
+      "Waktu Tunggu Part",
       "Total Downtime"
     ]);
 
@@ -114,11 +123,13 @@ router.get('/export', async (req, res) => {
     ws.getColumn(6).numFmt = "hh:mm:ss";
     ws.getColumn(7).numFmt = "hh:mm:ss";
     ws.getColumn(8).numFmt = "hh:mm:ss";
+    ws.getColumn(9).numFmt = "hh:mm:ss";
 
     // Data rows
     data.forEach(d => {
       const wait = d.durasi_tunggu != null ? d.durasi_tunggu / 86400 : null;
       const repair = d.durasi_perbaikan != null ? d.durasi_perbaikan / 86400 : null;
+      const waitPart = d.durasi_tunggu_part != null ? d.durasi_tunggu_part / 86400 : null;
       const total = (d.durasi_tunggu != null && d.durasi_perbaikan != null)
         ? (d.durasi_tunggu + d.durasi_perbaikan) / 86400
         : null;
@@ -126,11 +137,12 @@ router.get('/export', async (req, res) => {
       ws.addRow([
         d.mesin || "-",
         d.carline || "-",
-        d.start_time || "-",
-        d.repair_start_time || "-",
-        d.end_time || "-",
+        formatDate(d.start_time) || "-",
+        formatDate(d.repair_start_time) || "-",
+        formatDate(d.end_time) || "-",
         wait,
         repair,
+        waitPart,
         total
       ]);
     });
