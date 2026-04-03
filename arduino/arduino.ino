@@ -16,14 +16,14 @@ void loop() {
   bool repairAktif = digitalRead(pinRepair) == LOW;
 
   if (startAktif && repairAktif && !sudahStart) {
-    Serial.println("|START");
+    Serial.println("START");
     sudahStart = true;
     sudahRepair = false;
   } else if (!startAktif && repairAktif && !sudahRepair) {
-    Serial.println("|REPAIR-START");
+    Serial.println("REPAIR-START");
     sudahRepair = true;
   } else if (!startAktif && !repairAktif && (sudahStart || sudahRepair)) {
-    Serial.println("|FINISH");
+    Serial.println("FINISH");
     sudahStart = false;
     sudahRepair = false;
   }
