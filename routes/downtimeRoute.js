@@ -141,8 +141,10 @@ router.post('/finish', (req, res) => {
         lastEntry.durasi_tunggu = calculateDuration(lastEntry.start_time, lastEntry.repair_start_time); // detik
         lastEntry.durasi_perbaikan = calculateDuration(lastEntry.repair_start_time, now); // detik
     } else {
-        lastEntry.durasi_tunggu = calculateDuration(lastEntry.start_time, now);
-        lastEntry.durasi_perbaikan = 0;
+        lastEntry.repair_start_time = lastEntry.start_time;
+
+    lastEntry.durasi_tunggu = 0;
+    lastEntry.durasi_perbaikan = calculateDuration(lastEntry.start_time, now);
     }
 
     saveData(filePath, data);
