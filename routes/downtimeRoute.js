@@ -143,8 +143,8 @@ router.post('/finish', (req, res) => {
     } else {
         lastEntry.repair_start_time = lastEntry.start_time;
 
-    lastEntry.durasi_tunggu = 0;
-    lastEntry.durasi_perbaikan = calculateDuration(lastEntry.start_time, now);
+    lastEntry.durasi_tunggu = calculateDuration(lastEntry.start_time, now);
+    lastEntry.durasi_perbaikan = 0;
     }
 
     saveData(filePath, data);
