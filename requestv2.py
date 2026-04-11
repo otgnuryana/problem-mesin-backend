@@ -24,7 +24,7 @@ def kirim_ke_server(aksi):
     }
 
     if aksi not in endpoint_map:
-        log(f"⚠️ Aksi tidak dikenali: {aksi}")
+        log(f"Aksi tidak dikenali: {aksi}")
         return
 
     try:
@@ -35,10 +35,10 @@ def kirim_ke_server(aksi):
         }
 
         res = requests.post(url, json=payload, timeout=5)
-        log(f"📡 {aksi} => {res.status_code}")
+        log(f"{aksi} => {res.status_code}")
 
     except Exception as e:
-        log(f"❌ Gagal kirim: {e}")
+        log(f"Gagal kirim: {e}")
 
 # ===== Baca serial NON-BLOCKING =====
 def baca_serial():
@@ -46,10 +46,10 @@ def baca_serial():
 
     while True:
         try:
-            log("🔄 Mencoba koneksi serial...")
+            log("Mencoba koneksi serial...")
             ser = serial.Serial(PORT, BAUD, timeout=0)
             ser.reset_input_buffer()
-            log("✅ Serial connected")
+            log("Serial connected")
 
             while True:
                 try:
@@ -63,7 +63,7 @@ def baca_serial():
                             for line in lines[:-1]:
                                 line = line.strip()
                                 if line:
-                                    log(f"📥 {line}")
+                                    log(f"{line}")
                                     kirim_ke_server(line.upper())
 
                             buffer = lines[-1]
@@ -71,13 +71,13 @@ def baca_serial():
                     time.sleep(0.01)
 
                 except Exception as e:
-                    log(f"⚠️ Error saat baca serial: {e}")
+                    log(f"Error saat baca serial: {e}")
                     break  # keluar loop dalam → reconnect
 
         except Exception as e:
-            log(f"❌ Gagal connect serial: {e}")
+            log(f"Gagal connect serial: {e}")
 
-        log("⏳ Retry 3 detik...")
+        log("Retry 3 detik...")
         time.sleep(3)
 
 # ===== MAIN =====
@@ -86,5 +86,5 @@ if __name__ == '__main__':
         try:
             baca_serial()
         except Exception as e:
-            log(f"🔥 FATAL ERROR: {e}")
+            log(f"FATAL ERROR: {e}")
             time.sleep(5)
