@@ -1,21 +1,41 @@
 const int pinStart = 2;
 const int pinRepair = 3;
 
-bool sudahStart = false;
-bool sudahRepair = false;
+// ===== STATE =====
+enum State {
+  IDLE,
+  STARTED,
+  REPAIR
+};
 
+State currentState = IDLE;
+
+// ===== DEBOUNCE =====
+bool lastStart = HIGH;
+bool lastRepair = HIGH;
 unsigned long lastChange = 0;
 const int debounceDelay = 80;
 
-bool lastStart = HIGH;
-bool lastRepair = HIGH;
+// ===== ANTI SPAM =====
+unsigned long lastSend = 0;
+const int sendDelay = 300;
 
+// ===== SETUP =====
 void setup() {
   pinMode(pinStart, INPUT_PULLUP);
   pinMode(pinRepair, INPUT_PULLUP);
   Serial.begin(9600);
 }
 
+// ===== FUNCTION KIRIM =====
+void kirim(String msg) {
+  if (millis() - lastSend > sendDelay) {
+    Serial.println(msg);
+    lastSend = millis();
+  }
+}
+
+// ===== LOOP =====
 void loop() {
   bool startNow = digitalRead(pinStart);
   bool repairNow = digitalRead(pinRepair);
@@ -30,24 +50,39 @@ void loop() {
     bool startAktif = startNow == LOW;
     bool repairAktif = repairNow == LOW;
 
-    if (startAktif && repairAktif && !sudahStart) {
-      Serial.println("START");
-      sudahStart = true;
-      sudahRepair = false;
+    // ===== STATE MACHINE =====
 
-    } else if (!startAktif && repairAktif && !sudahRepair && sudahStart) {
-      Serial.println("REPAIR-START");
-      sudahRepair = true;
+    switch (currentState) {
 
-    } else if (!startAktif && !repairAktif && (sudahStart || sudahRepair)) {
-      Serial.println("FINISH");
-      sudahStart = false;
-      sudahRepair = false;
+      case IDLE:
+        if (startAktif && repairAktif) {
+          kirim("START");
+          currentState = STARTED;
+        }
+        break;
+
+      case STARTED:
+        if (!startAktif && repairAktif) {
+          kirim("REPAIR-START");
+          currentState = REPAIR;
+        }
+        else if (!startAktif && !repairAktif) {
+          kirim("FINISH");
+          currentState = IDLE;
+        }
+        break;
+
+      case REPAIR:
+        if (!startAktif && !repairAktif) {
+          kirim("FINISH");
+          currentState = IDLE;
+        }
+        break;
     }
   }
 
   lastStart = startNow;
   lastRepair = repairNow;
 
-  delay(10); // dari 300 → 10 (WAJIB)
+  delay(10);
 }
