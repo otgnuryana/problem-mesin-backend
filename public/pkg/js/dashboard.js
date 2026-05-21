@@ -98,9 +98,13 @@ if (item.repair_start_time) {
     <td>${formatDuration(item.total_perbaikan)}</td>
   `;
         tbody.appendChild(row);
-        if (item.end_time && item.durasi_perbaikan) {
-        totalSemua += item.total_perbaikan;
-      }
+        if (item.end_time) {
+
+  totalSemua +=
+    Number(item.durasi_tunggu || 0) +
+    Number(item.durasi_perbaikan || 0);
+
+}
       });
       document.getElementById('total-semua').innerText = formatDuration(totalSemua);
       document.getElementById('status').innerText =
