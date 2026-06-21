@@ -6,77 +6,156 @@
   <title>Monitoring Andon AC90</title>
   <link rel="stylesheet" href="/pkg/css/bootstrap.min.css">
   <link rel="stylesheet" href="/pkg/css/dashboard.css">
+  <link rel="stylesheet"
+      href="/adminlte/dist/css/adminlte.min.css">
 </head>
-<body>
-<div class="container-fluid my-3">
-  <h1 class="mb-4">♨️ Monitoring Andon AC90</h1>
 
-  <form class="form-row d-flex align-items-center justify-content-between mb-3">
-    
-    <!-- Group kiri -->
-    <div class="d-flex align-items-center flex-wrap">
-      <!-- Tanggal -->
-      <div class="form-group mx-2">
-        <input type="date" id="tanggal" class="form-control" />
-      </div>
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
 
-      <!-- Shift -->
-      <div class="form-group mx-2">
-        <select id="shift" class="form-control">
-          <option value="1">Shift 1 (06:00–19:00)</option>
-          <option value="2">Shift 2 (19:00–06:00)</option>
-        </select>
-      </div>
+<div class="app-wrapper">
 
-      <!-- Checkbox -->
-      <div class="form-check mx-3">
-        <input type="checkbox" class="form-check-input" id="belum_selesai" />
-        <label class="form-check-label" for="belum_selesai">
-          Hanya yang belum selesai
-        </label>
-      </div>
+    <!-- Navbar -->
+    <nav class="app-header navbar navbar-expand bg-body">
+        <div class="container-fluid">
+            <span class="navbar-brand">
+                <h1>♨️ Monitoring Andon AC90</h1>
+            </span>
+        </div>
+    </nav>
 
-      <!-- Tombol tampilkan -->
-      <!-- <button type="button" class="btn btn-primary mx-2" onclick="fetchData()">Tampilkan</button> -->
-    </div>
+    <!-- Sidebar -->
+    <aside class="app-sidebar bg-body-secondary shadow">
 
-    <!-- Tombol export di kanan -->
-    <div>
-      <button type="button" class="btn btn-success" onclick="exportExcel()">Export ke Excel</button>
-    </div>
-  </form>
+        <div class="sidebar-brand">
+            <a href="#" class="brand-link text-decoration-none">
+                <span class="brand-text fw-light">
+                    Maintenance
+                </span>
+            </a>
+        </div>
+
+        <div class="sidebar-wrapper">
+
+            <nav class="mt-2">
+
+                <ul class="nav sidebar-menu flex-column"
+                    data-lte-toggle="treeview">
+
+                    <li class="nav-item">
+                        <a href="/" class="nav-link active">
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/grafik" class="nav-link">
+                            <p>Chart</p>
+                        </a>
+                    </li>
+
+                     <li class="nav-item">
+                        <a href="/target" class="nav-link">
+                            <p>Target</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/perbaikan" class="nav-link">
+                            <p>Perbaikan</p>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-main">
+
+        <div class="app-content">
+
+                              <div class="container-fluid my-3">
+                                    
+
+                                    <form class="form-row d-flex align-items-center justify-content-between mb-3">
+                                      
+                                      <!-- Group kiri -->
+                                      <div class="d-flex align-items-center flex-wrap">
+                                        <!-- Tanggal -->
+                                        <div class="form-group mx-2">
+                                          <input type="date" id="tanggal" class="form-control" />
+                                        </div>
+
+                                        <!-- Shift -->
+                                        <div class="form-group mx-2">
+                                          <select id="shift" class="form-control">
+                                            <option value="1">Shift 1 (06:00–19:00)</option>
+                                            <option value="2">Shift 2 (19:00–06:00)</option>
+                                          </select>
+                                        </div>
+
+                                        <!-- Checkbox -->
+                                        <div class="form-check mx-3">
+                                          <input type="checkbox" class="form-check-input" id="belum_selesai" />
+                                          <label class="form-check-label" for="belum_selesai">
+                                            Hanya yang belum selesai
+                                          </label>
+                                        </div>
+
+                                        <!-- Tombol tampilkan -->
+                                        <!-- <button type="button" class="btn btn-primary mx-2" onclick="fetchData()">Tampilkan</button> -->
+                                      </div>
+
+                                      <!-- Tombol export di kanan -->
+                                      <div>
+                                        <button type="button" class="btn btn-success" onclick="exportExcel()">Export ke Excel</button>
+                                      </div>
+                                    </form>
+                                  </div>
+
+
+                                    <table id="dataTable">
+                                      <thead>
+                                        <tr>
+                                          <th>Mesin</th>
+                                          <th>Carline</th>
+                                          <th>Mulai Problem</th>
+                                          <th>MTC Datang</th>
+                                          <th>Waktu Tunggu MTC</th>
+                                          <th>Selesai Perbaikan</th>
+                                          <th>Waktu Perbaikan</th>
+                                          <th>Tunggu Part</th>
+                                          <th>Total Downtime</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody></tbody>
+                                      <tfoot>
+                                    <tr>
+                                      <td colspan="8" style="text-align: right;"><strong>Total Semua Downtime</strong></td>
+                                      <td id="total-semua">-</td>
+                                    </tr>
+                                  </tfoot>
+                                      
+
+                                    </table>
+                                      <div class="status">
+                                        <p id="status"></p>
+                                      </div>
+                                  <div id="notifArea" class="position-fixed top-0 end-0 p-3" style="z-index: 9999;"></div>
+
+
+        </div>
+
+    </main>
+
 </div>
 
-
-  <table id="dataTable">
-    <thead>
-      <tr>
-        <th>Mesin</th>
-        <th>Carline</th>
-        <th>Mulai Problem</th>
-        <th>MTC Datang</th>
-        <th>Waktu Tunggu MTC</th>
-        <th>Selesai Perbaikan</th>
-        <th>Waktu Perbaikan</th>
-        <th>Tunggu Part</th>
-        <th>Total Downtime</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-    <tfoot>
-  <tr>
-    <td colspan="8" style="text-align: right;"><strong>Total Semua Downtime</strong></td>
-    <td id="total-semua">-</td>
-  </tr>
-</tfoot>
-    
-
-  </table>
-    <div class="status">
-      <p id="status"></p>
-    </div>
-<div id="notifArea" class="position-fixed top-0 end-0 p-3" style="z-index: 9999;"></div>
-
 <script src="/pkg/js/dashboard.js"></script>
+<script src="/adminlte/dist/js/adminlte.min.js"></script>
+
 </body>
 </html>

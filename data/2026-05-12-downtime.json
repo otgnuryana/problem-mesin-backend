@@ -1,0 +1,45 @@
+[
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-05-12T14:35:40.422Z",
+    "repair_start_time": "2026-05-12T14:36:06.163Z",
+    "durasi_tunggu": 25
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-05-12T14:38:11.202Z",
+    "repair_start_time": "2026-05-12T14:38:31.463Z",
+    "durasi_tunggu": 20,
+    "end_time": "2026-05-12T14:38:37.374Z",
+    "durasi_perbaikan": 5
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-05-12T14:39:07.990Z",
+    "repair_start_time": "2026-05-12T14:39:14.261Z",
+    "durasi_tunggu": 6,
+    "end_time": "2026-05-12T14:39:17.130Z",
+    "durasi_perbaikan": 2
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-05-12T14:49:27.001Z",
+    "repair_start_time": "2026-05-12T14:49:34.675Z",
+    "durasi_tunggu": 7,
+    "end_time": "2026-05-12T14:49:41.190Z",
+    "durasi_perbaikan": 6
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-05-12T14:50:07.987Z",
+    "repair_start_time": "2026-05-12T14:50:41.480Z",
+    "durasi_tunggu": 33,
+    "end_time": "2026-05-12T14:50:48.764Z",
+    "durasi_perbaikan": 7
+  }
+]

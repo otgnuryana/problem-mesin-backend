@@ -1,0 +1,12 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Salin package.json terlebih dahulu untuk memanfaatkan cache layer Docker
+COPY package*.json ./
+
+# Install semua dependencies (termasuk nodemon di devDependencies)
+RUN npm install
+
+# Perintah utama saat kontainer dinyalakan
+CMD ["npm", "run", "dev"]

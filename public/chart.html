@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet"
+      href="/adminlte/dist/css/adminlte.min.css">
+</head>
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+
+<div class="app-wrapper">
+
+    <!-- Navbar -->
+    <nav class="app-header navbar navbar-expand bg-body">
+        <div class="container-fluid">
+            <span class="navbar-brand">
+                <h1>Chart</h1>
+            </span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="app-sidebar bg-body-secondary shadow">
+
+        <div class="sidebar-brand">
+            <a href="#" class="brand-link text-decoration-none">
+                <span class="brand-text fw-light">
+                    Maintenance
+                </span>
+            </a>
+        </div>
+
+        <div class="sidebar-wrapper">
+
+            <nav class="mt-2">
+
+                <ul class="nav sidebar-menu flex-column"
+                    data-lte-toggle="treeview">
+
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/grafik" class="nav-link active">
+                            <p>Chart</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/target" class="nav-link">
+                            <p>Target</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/perbaikan" class="nav-link">
+                            <p>Perbaikan</p>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-main">
+
+        <div class="app-content">
+        <div class="card">
+    <div class="card-header">
+        Toyota
+    </div>
+    <div class="card-body">
+         <canvas id="downtimeChart"></canvas>
+        <!-- <canvas id="toyotaChart"></canvas> -->
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Daihatsu
+    </div>
+    <div class="card-body">
+        <!-- <canvas id="daihatsuChart"></canvas> -->
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Honda
+    </div>
+    <div class="card-body">
+        <!-- <canvas id="hondaChart"></canvas> -->
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Suzuki
+    </div>
+    <div class="card-body">
+        <!-- <canvas id="suzukiChart"></canvas> -->
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Mitsubishi
+    </div>
+    <div class="card-body">
+        <!-- <canvas id="mitsubishiChart"></canvas> -->
+    </div>
+</div>
+
+        </div>
+
+    </main>
+
+</div>
+<script src="/pkg/js/chart.js"></script>
+<script src="/pkg/js/dashboard.js"></script>
+<script src="/adminlte/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>

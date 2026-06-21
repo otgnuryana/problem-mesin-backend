@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target</title>
+    <link rel="stylesheet" href="/pkg/css/bootstrap.min.css">
+      <link rel="stylesheet"
+      href="/adminlte/dist/css/adminlte.min.css">
+</head>
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+
+<div class="app-wrapper">
+
+    <!-- Navbar -->
+    <nav class="app-header navbar navbar-expand bg-body">
+        <div class="container-fluid">
+            <span class="navbar-brand">
+                <h1>Master Target</h1>
+            </span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="app-sidebar bg-body-secondary shadow">
+
+        <div class="sidebar-brand">
+            <a href="#" class="brand-link text-decoration-none">
+                <span class="brand-text fw-light">
+                    Maintenance
+                </span>
+            </a>
+        </div>
+
+        <div class="sidebar-wrapper">
+
+            <nav class="mt-2">
+
+                <ul class="nav sidebar-menu flex-column"
+                    data-lte-toggle="treeview">
+
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/grafik" class="nav-link">
+                            <p>Chart</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/target" class="nav-link active">
+                            <p>Target</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/perbaikan" class="nav-link">
+                            <p>Perbaikan</p>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-main">
+
+        <div class="app-content">
+        <div class="card">
+    <div class="card-header">
+        Input Target
+    </div>
+    <div class="card-body">
+         <select id="carline">
+    <option>Toyota</option>
+    <option>Daihatsu</option>
+    <option>Honda</option>
+    <option>Suzuki</option>
+    <option>Mitsubishi</option>
+</select>
+
+<input type="text" id="mesin">
+
+<input type="number" id="target">
+
+<button>Simpan</button>
+    </div>
+</div>
+
+
+        </div>
+
+    </main>
+
+</div>
+<script src="/adminlte/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>
