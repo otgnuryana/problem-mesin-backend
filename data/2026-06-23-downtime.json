@@ -1,0 +1,84 @@
+[
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-23T15:01:29.454Z",
+    "repair_start_time": "2026-06-23T15:01:33.446Z",
+    "durasi_tunggu": 3,
+    "end_time": "2026-06-23T15:01:33.884Z",
+    "durasi_perbaikan": 0
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-23T15:01:55.019Z",
+    "repair_start_time": "2026-06-23T15:01:57.703Z",
+    "durasi_tunggu": 2,
+    "end_time": "2026-06-23T15:02:03.208Z",
+    "durasi_perbaikan": 5
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-23T15:02:29.053Z",
+    "repair_start_time": "2026-06-23T15:02:36.708Z",
+    "durasi_tunggu": 7,
+    "end_time": "2026-06-23T15:02:39.228Z",
+    "durasi_perbaikan": 2
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-23T15:02:45.145Z",
+    "repair_start_time": "2026-06-23T15:02:46.664Z",
+    "durasi_tunggu": 1,
+    "part_wait_start": "2026-06-23T15:02:51.074Z",
+    "part_wait_end": "2026-06-23T15:02:57.158Z",
+    "durasi_tunggu_part": 6,
+    "end_time": "2026-06-23T15:02:59.791Z",
+    "durasi_perbaikan": 13
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-23T15:04:01.851Z",
+    "repair_start_time": "2026-06-23T15:04:05.068Z",
+    "durasi_tunggu": 3
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-23T15:04:23.385Z",
+    "repair_start_time": "2026-06-23T15:04:24.433Z",
+    "durasi_tunggu": 1,
+    "end_time": "2026-06-23T15:04:35.530Z",
+    "durasi_perbaikan": 11
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-23T15:04:41.040Z",
+    "repair_start_time": "2026-06-23T15:04:43.263Z",
+    "durasi_tunggu": 2,
+    "end_time": "2026-06-23T15:04:46.293Z",
+    "durasi_perbaikan": 3
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-23T15:04:57.337Z",
+    "repair_start_time": "2026-06-23T15:05:01.181Z",
+    "durasi_tunggu": 3,
+    "end_time": "2026-06-23T15:05:04.575Z",
+    "durasi_perbaikan": 3
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-23T15:47:11.981Z",
+    "repair_start_time": "2026-06-23T15:47:14.009Z",
+    "durasi_tunggu": 2,
+    "end_time": "2026-06-23T15:47:18.510Z",
+    "durasi_perbaikan": 4
+  }
+]

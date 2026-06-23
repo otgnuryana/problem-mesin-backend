@@ -1,0 +1,11 @@
+[
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-21T20:00:16.431Z",
+    "end_time": "2026-06-21T20:00:21.581Z",
+    "repair_start_time": "2026-06-21T20:00:16.431Z",
+    "durasi_tunggu": 5,
+    "durasi_perbaikan": 0
+  }
+]
