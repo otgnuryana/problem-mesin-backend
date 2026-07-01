@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet"
       href="/adminlte/dist/css/adminlte.min.css">
 </head>
@@ -15,8 +15,8 @@
     <!-- Navbar -->
     <nav class="app-header navbar navbar-expand bg-body">
         <div class="container-fluid">
-            <span class="navbar-brand">
-                <h1>Chart</h1>
+            <span class="navbar-brand m-2">
+                <h2>Chart</h2>
             </span>
         </div>
     </nav>
@@ -57,12 +57,6 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="/perbaikan" class="nav-link">
-                            <p>Perbaikan</p>
-                        </a>
-                    </li>
-
                 </ul>
 
             </nav>
@@ -75,49 +69,63 @@
     <main class="app-main">
 
         <div class="app-content">
-        <div class="card">
+        <div class="card m-2">
+            <div class="card-body">
+
+                <label>Tanggal</label>
+
+                <input
+                    type="date"
+                    id="tanggal"
+                    class="form-control"
+                    style="max-width:250px;">
+
+            </div>
+        </div>
+        <div class="card m-2">
     <div class="card-header">
         Toyota
     </div>
     <div class="card-body">
-         <canvas id="downtimeChart"></canvas>
-        <!-- <canvas id="toyotaChart"></canvas> -->
+         <!-- <canvas id="downtimeChart"></canvas> -->
+        <canvas id="toyotaChart"></canvas>
     </div>
 </div>
 
-<div class="card">
+
+<div class="card m-2">
     <div class="card-header">
         Daihatsu
     </div>
     <div class="card-body">
-        <!-- <canvas id="daihatsuChart"></canvas> -->
+        <canvas id="daihatsuChart"></canvas>
     </div>
 </div>
 
-<div class="card">
+<div class="card m-2">
     <div class="card-header">
         Honda
     </div>
     <div class="card-body">
-        <!-- <canvas id="hondaChart"></canvas> -->
+        <canvas id="hondaChart"></canvas>
     </div>
 </div>
 
-<div class="card">
+<div class="card m-2">
     <div class="card-header">
-        Suzuki
+        MMKI
     </div>
     <div class="card-body">
-        <!-- <canvas id="suzukiChart"></canvas> -->
+        <canvas id="mitsubishiChart"></canvas>
     </div>
 </div>
 
-<div class="card">
+<div class="card m-2">
     <div class="card-header">
-        Mitsubishi
+        Domestik
     </div>
     <div class="card-body">
-        <!-- <canvas id="mitsubishiChart"></canvas> -->
+        <canvas id="domestikChart"></canvas>
     </div>
 </div>
 
@@ -127,7 +135,6 @@
 
 </div>
 <script src="/pkg/js/chart.js"></script>
-<script src="/pkg/js/dashboard.js"></script>
 <script src="/adminlte/dist/js/adminlte.min.js"></script>
 
 </body>

@@ -1,0 +1,29 @@
+[
+  {
+    "mesin": "T9-11",
+    "carline": "Toyota",
+    "start_time": "2026-06-30T11:27:19.406Z",
+    "repair_start_time": "2026-06-30T11:27:29.415Z",
+    "durasi_tunggu": 10,
+    "end_time": "2026-06-30T11:28:09.432Z",
+    "durasi_perbaikan": 40
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-30T11:28:19.735Z",
+    "repair_start_time": "2026-06-30T11:28:29.744Z",
+    "durasi_tunggu": 10,
+    "end_time": "2026-06-30T11:29:09.761Z",
+    "durasi_perbaikan": 40
+  },
+  {
+    "mesin": "T9-10",
+    "carline": "Toyota",
+    "start_time": "2026-06-30T11:30:55.137Z",
+    "repair_start_time": "2026-06-30T11:31:05.147Z",
+    "durasi_tunggu": 10,
+    "end_time": "2026-06-30T11:31:45.156Z",
+    "durasi_perbaikan": 40
+  }
+]

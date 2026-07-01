@@ -1,160 +1,84 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
+
 const router = express.Router();
 
 router.get('/chart', (req, res) => {
 
-    res.json([
-    {
-        mesin: 'T9-01',
-        aktual: 14,
-        target: 20
-    },
-    {
-        mesin: 'T9-02',
-        aktual: 5,
-        target: 15
-    },
-    {
-        mesin: 'T9-03',
-        aktual: 12,
-        target: 18
-    },
-    {
-        mesin: 'T9-04',
-        aktual: 8,
-        target: 15
-    },
-    {
-        mesin: 'T9-05',
-        aktual: 16,
-        target: 20
-    },
-    {
-        mesin: 'T9-06',
-        aktual: 10,
-        target: 15
-    },
-    {
-        mesin: 'T9-07',
-        aktual: 7,
-        target: 12
-    },
-    {
-        mesin: 'T9-08',
-        aktual: 13,
-        target: 18
-    },
-    {
-        mesin: 'T9-09',
-        aktual: 15,
-        target: 20
-    },
-    {
-        mesin: 'T9-10',
-        aktual: 9,
-        target: 15
-    },
-    {
-        mesin: 'T9-11',
-        aktual: 11,
-        target: 16
-    },
-    {
-        mesin: 'T9-12',
-        aktual: 17,
-        target: 22
-    },
-    {
-        mesin: 'T9-13',
-        aktual: 6,
-        target: 12
-    },
-    {
-        mesin: 'T9-14',
-        aktual: 14,
-        target: 18
-    },
-    {
-        mesin: 'T9-15',
-        aktual: 18,
-        target: 25
-    },
-    {
-        mesin: 'T9-16',
-        aktual: 10,
-        target: 15
-    },
-    {
-        mesin: 'T9-17',
-        aktual: 8,
-        target: 14
-    },
-    {
-        mesin: 'T9-18',
-        aktual: 16,
-        target: 20
-    },
-    {
-        mesin: 'T9-19',
-        aktual: 12,
-        target: 18
-    },
-    {
-        mesin: 'T9-20',
-        aktual: 7,
-        target: 10
-    },
-    {
-        mesin: 'T9-21',
-        aktual: 13,
-        target: 18
-    },
-    {
-        mesin: 'T9-22',
-        aktual: 15,
-        target: 20
-    },
-    {
-        mesin: 'T9-23',
-        aktual: 9,
-        target: 14
-    },
-    {
-        mesin: 'T9-24',
-        aktual: 11,
-        target: 16
-    },
-    {
-        mesin: 'T9-25',
-        aktual: 19,
-        target: 25
-    },
-    {
-        mesin: 'T9-26',
-        aktual: 8,
-        target: 12
-    },
-    {
-        mesin: 'T9-27',
-        aktual: 14,
-        target: 18
-    },
-    {
-        mesin: 'T9-28',
-        aktual: 10,
-        target: 15
-    },
-    {
-        mesin: 'T9-29',
-        aktual: 17,
-        target: 22
-    },
-    {
-        mesin: 'T9-30',
-        aktual: 12,
-        target: 18
+    const tanggal = req.query.tanggal;
+    if (!tanggal) {
+        return res.status(400).json({
+            message: 'Tanggal wajib diisi'
+        });
     }
-]);
+
+    const targetPath = path.join(__dirname, '../data/target.json');
+    const downtimePath = path.join(__dirname, `../data/${tanggal}-downtime.json`);
+
+    if (!fs.existsSync(downtimePath)) {
+        return res.json([]);
+    }
+
+    const targetData = JSON.parse(
+        fs.readFileSync(targetPath, 'utf8')
+    );
+
+    const downtimeData = JSON.parse(
+        fs.readFileSync(downtimePath, 'utf8')
+    );
+
+    const totalDowntime = {};
+
+    downtimeData.forEach(item => {
+
+        const total =
+            (item.durasi_tunggu || 0) +
+            (item.durasi_perbaikan || 0);
+
+        if (!totalDowntime[item.mesin]) {
+            totalDowntime[item.mesin] = 0;
+        }
+
+        totalDowntime[item.mesin] += total;
+
+    });
+
+    const result = targetData.map(item => {
+        const totalDetik =
+        totalDowntime[item.mesin] || 0;
+
+        return {
+            id: item.id,
+            carline: item.carline,
+            mesin: item.mesin,
+            target: item.target,
+            
+            aktual: Number(
+                 totalDetik/60 
+            )
+
+        };
+
+    });
+
+    result.sort((a, b) => {
+
+    if (a.carline !== b.carline) {
+        return a.carline.localeCompare(b.carline);
+    }
+
+    return a.mesin.localeCompare(
+        b.mesin,
+        undefined,
+        {
+            numeric: true
+        }
+    );
+
+    });
+    
+    res.json(result);
 
 });
 

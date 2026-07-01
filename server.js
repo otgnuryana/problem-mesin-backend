@@ -4,6 +4,7 @@ const path = require('path');
 const downtimeRoute = require('./routes/downtimeRoute');
 const dataRoutes = require('./routes/data');
 const dashboardRoutes = require('./routes/dashboard');
+const targetRoute = require('./routes/targetRoute');
 
 const app = express();
 const PORT = 3000;
@@ -28,6 +29,8 @@ app.get('/grafik', (req, res) => {
 app.get('/target', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/target.html'));
 });
+
+app.use('/api/target', targetRoute);
 
 const formRoute = require('./routes/formRoute');
 app.use('/kirim', formRoute);

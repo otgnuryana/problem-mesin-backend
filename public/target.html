@@ -15,8 +15,8 @@
     <!-- Navbar -->
     <nav class="app-header navbar navbar-expand bg-body">
         <div class="container-fluid">
-            <span class="navbar-brand">
-                <h1>Master Target</h1>
+            <span class="navbar-brand m-2">
+                <h2>Master Target</h2>
             </span>
         </div>
     </nav>
@@ -57,11 +57,6 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="/perbaikan" class="nav-link">
-                            <p>Perbaikan</p>
-                        </a>
-                    </li>
 
                 </ul>
 
@@ -75,33 +70,148 @@
     <main class="app-main">
 
         <div class="app-content">
-        <div class="card">
-    <div class="card-header">
-        Input Target
-    </div>
-    <div class="card-body">
-         <select id="carline">
-    <option>Toyota</option>
-    <option>Daihatsu</option>
-    <option>Honda</option>
-    <option>Suzuki</option>
-    <option>Mitsubishi</option>
-</select>
+ <section class="content pt-3">
 
-<input type="text" id="mesin">
+            <div class="container-fluid">
 
-<input type="number" id="target">
+                <div class="card">
 
-<button>Simpan</button>
-    </div>
-</div>
+                    <div class="card-header d-flex justify-content-start">
 
+                        <h3 class="card-title">
+                            
+                        </h3>
 
+                        <button
+                            id="btnTambah"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#targetModal">
+                            Tambah Mesin
+                        </button>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <input
+                            type="text"
+                            id="search"
+                            class="form-control mb-3"
+                            placeholder="Cari Mesin atau Carline">
+
+                        <table class="table table-bordered">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>No</th>
+                                    <th>Carline</th>
+                                    <th>Mesin</th>
+                                    <th>Target</th>
+                                    <th>Aksi</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="tableBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
         </div>
 
     </main>
 
 </div>
+<div class="modal fade" id="targetModal">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 id="modalTitle">Tambah Mesin</h5>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="mb-3">
+                    <label>Carline</label>
+
+                    <select id="carline" class="form-control">
+
+                        <option>Toyota</option>
+                        <option>Daihatsu</option>
+                        <option>Honda</option>
+                        <option>Mitsubishi</option>
+                        <option>Domestik</option>
+                        <option>Other</option>
+
+                    </select>
+                </div>
+
+                <div class="mb-3">
+
+                    <label>Mesin</label>
+
+                    <input
+                        id="mesin"
+                        class="form-control">
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label>Target</label>
+
+                    <input
+                        id="target"
+                        type="number"
+                        class="form-control">
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Batal
+
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    id="btnSimpan">
+
+                    Simpan
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/pkg/js/target.js"></script>
+<script src="/pkg/js/bootstrap.bundle.min.js"></script>
 <script src="/adminlte/dist/js/adminlte.min.js"></script>
 
 </body>

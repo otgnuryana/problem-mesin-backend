@@ -3,8 +3,8 @@ import time
 
 SERVER = "http://localhost:3000"  # Ganti jika server beda
 
-MESIN = "D9-10"
-CARLINE = "Daihatsu"
+MESIN = "T9-10"
+CARLINE = "Toyota"
 def post(endpoint, payload):
     url = f"{SERVER}/downtime/{endpoint}"
     res = requests.post(url, json=payload)
