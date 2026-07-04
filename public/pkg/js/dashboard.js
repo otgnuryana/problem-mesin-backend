@@ -1,6 +1,7 @@
 // Saat halaman dibuka, isi tanggal default hari ini
     document.getElementById("tanggal").value = new Date().toISOString().split('T')[0];
 
+// method forrmat tanggal
 function formatDate(dateString) {
     if (!dateString) return "-";
     const date = new Date(dateString);
@@ -9,7 +10,7 @@ function formatDate(dateString) {
       hour12: false,
     });
   }
-
+// method format waktu
   function formatDuration(ms) {
     if (!ms || isNaN(ms)) return "00:00:00";
     const totalSeconds = Math.floor(ms / 1000);
@@ -18,7 +19,7 @@ function formatDate(dateString) {
     const seconds = String(totalSeconds % 60).padStart(2, "0");
     return `${hours}:${minutes}:${seconds}`;
   }
-
+// collect data
   async function fetchData() {
     const tanggal = document.getElementById("tanggal").value;
     const shift = document.getElementById("shift").value;

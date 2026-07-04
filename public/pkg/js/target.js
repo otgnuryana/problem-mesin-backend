@@ -1,6 +1,6 @@
 let dataTarget = [];
 let editId = null;
-
+// method load data
 async function loadData() {
 
     const response = await fetch('/api/target');
@@ -10,7 +10,7 @@ async function loadData() {
     renderTable(dataTarget);
 
 }
-
+// read api tampilkan ke table
 function renderTable(data) {
 
     const tbody = document.getElementById('tableBody');
@@ -44,7 +44,7 @@ function renderTable(data) {
     });
 
 }
-
+// Method Edit
 function editTarget(id) {
 
     editId = id;
@@ -217,7 +217,7 @@ document.getElementById("carline").selectedIndex = 0;
     loadData();
 
 }
-
+// method delete
 async function deleteTarget(id) {
 
     const data = dataTarget.find(item => item.id === id);

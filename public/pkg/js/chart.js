@@ -1,5 +1,6 @@
 const charts = {};
 
+// method durasi
 function formatDurasiMenit(nilaiMenit) {
 
     const totalDetik = Math.round(nilaiMenit * 60);
@@ -19,6 +20,7 @@ function formatDurasiMenit(nilaiMenit) {
 
 }
 
+// method create chart
 function createChart(canvasId, data) {
 
     const labels = data.map(item => item.mesin);
@@ -100,6 +102,7 @@ function createChart(canvasId, data) {
 
 }
 
+// load chart by tanggal
 async function loadChartData() {
 
     const tanggal =

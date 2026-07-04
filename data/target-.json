@@ -2,421 +2,193 @@
   {
     "id": 1,
     "carline": "Toyota",
-    "mesin": "T9-01",
-    "target": 0
+    "mesin": "T9-10",
+    "target": 5
   },
   {
     "id": 2,
     "carline": "Toyota",
-    "mesin": "T9-02",
-    "target": 20
+    "mesin": "T9-11",
+    "target": 7
   },
   {
     "id": 3,
     "carline": "Toyota",
-    "mesin": "T9-03",
-    "target": 0
+    "mesin": "T9-01",
+    "target": 3
   },
   {
     "id": 4,
     "carline": "Toyota",
-    "mesin": "T9-04",
-    "target": 0
+    "mesin": "T9-02",
+    "target": 10
   },
   {
     "id": 5,
     "carline": "Toyota",
-    "mesin": "T9-05",
-    "target": 0
+    "mesin": "T9-03",
+    "target": 4
   },
   {
     "id": 6,
     "carline": "Toyota",
-    "mesin": "T9-06",
-    "target": 0
+    "mesin": "T9-04",
+    "target": 5
   },
   {
     "id": 7,
     "carline": "Toyota",
-    "mesin": "T9-07",
-    "target": 0
+    "mesin": "T9-05",
+    "target": 8
   },
   {
     "id": 8,
     "carline": "Toyota",
-    "mesin": "T9-08",
-    "target": 0
+    "mesin": "T9-06",
+    "target": 12
   },
   {
     "id": 9,
     "carline": "Toyota",
-    "mesin": "T9-09",
-    "target": 0
+    "mesin": "T9-07",
+    "target": 3
   },
   {
     "id": 10,
     "carline": "Toyota",
-    "mesin": "T9-10",
-    "target": 0
+    "mesin": "T9-08",
+    "target": 9
   },
   {
     "id": 11,
     "carline": "Toyota",
-    "mesin": "T9-11",
-    "target": 0
+    "mesin": "T9-09",
+    "target": 7
   },
   {
     "id": 12,
-    "carline": "Toyota",
-    "mesin": "T9-12",
-    "target": 0
-  },
-  {
-    "id": 13,
-    "carline": "Toyota",
-    "mesin": "T9-13",
-    "target": 0
-  },
-  {
-    "id": 14,
-    "carline": "Toyota",
-    "mesin": "T9-14",
-    "target": 0
-  },
-  {
-    "id": 15,
-    "carline": "Toyota",
-    "mesin": "T9-15",
-    "target": 0
-  },
-  {
-    "id": 16,
-    "carline": "Toyota",
-    "mesin": "T9-16",
-    "target": 0
-  },
-  {
-    "id": 17,
-    "carline": "Toyota",
-    "mesin": "T9-17",
-    "target": 0
-  },
-  {
-    "id": 18,
-    "carline": "Toyota",
-    "mesin": "T9-18",
-    "target": 0
-  },
-  {
-    "id": 19,
-    "carline": "Toyota",
-    "mesin": "T9-19",
-    "target": 0
-  },
-  {
-    "id": 20,
-    "carline": "Toyota",
-    "mesin": "T9-20",
-    "target": 0
-  },
-  {
-    "id": 21,
-    "carline": "Toyota",
-    "mesin": "T9-21",
-    "target": 0
-  },
-  {
-    "id": 22,
-    "carline": "Toyota",
-    "mesin": "T9-22",
-    "target": 0
-  },
-  {
-    "id": 23,
-    "carline": "Toyota",
-    "mesin": "T9-23",
-    "target": 0
-  },
-  {
-    "id": 24,
-    "carline": "Toyota",
-    "mesin": "T9-24",
-    "target": 0
-  },
-  {
-    "id": 25,
-    "carline": "Toyota",
-    "mesin": "T9-25",
-    "target": 0
-  },
-  {
-    "id": 26,
-    "carline": "Toyota",
-    "mesin": "T9-26",
-    "target": 0
-  },
-  {
-    "id": 27,
-    "carline": "Toyota",
-    "mesin": "T9-27",
-    "target": 0
-  },
-  {
-    "id": 28,
-    "carline": "Toyota",
-    "mesin": "T9-28",
-    "target": 0
-  },
-  {
-    "id": 29,
-    "carline": "Toyota",
-    "mesin": "T9-29",
-    "target": 0
-  },
-  {
-    "id": 30,
-    "carline": "Toyota",
-    "mesin": "T9-30",
-    "target": 0
-  },
-  {
-    "id": 31,
     "carline": "Daihatsu",
     "mesin": "D9-01",
     "target": 0
   },
   {
-    "id": 32,
+    "id": 13,
     "carline": "Daihatsu",
     "mesin": "D9-02",
     "target": 0
   },
   {
-    "id": 33,
+    "id": 14,
     "carline": "Daihatsu",
     "mesin": "D9-03",
     "target": 0
   },
   {
-    "id": 34,
+    "id": 15,
     "carline": "Daihatsu",
     "mesin": "D9-04",
     "target": 0
   },
   {
-    "id": 35,
+    "id": 16,
     "carline": "Daihatsu",
     "mesin": "D9-05",
     "target": 0
   },
   {
-    "id": 36,
+    "id": 17,
     "carline": "Daihatsu",
     "mesin": "D9-06",
     "target": 0
   },
   {
-    "id": 37,
+    "id": 18,
     "carline": "Daihatsu",
     "mesin": "D9-07",
     "target": 0
   },
   {
-    "id": 38,
+    "id": 19,
     "carline": "Daihatsu",
     "mesin": "D9-08",
     "target": 0
   },
   {
-    "id": 39,
+    "id": 20,
     "carline": "Daihatsu",
     "mesin": "D9-09",
     "target": 0
   },
   {
-    "id": 40,
+    "id": 21,
     "carline": "Daihatsu",
     "mesin": "D9-10",
     "target": 0
   },
   {
-    "id": 41,
-    "carline": "Daihatsu",
-    "mesin": "D9-11",
+    "id": 22,
+    "carline": "Mitsubishi",
+    "mesin": "M9-01",
     "target": 0
   },
   {
-    "id": 42,
-    "carline": "Daihatsu",
-    "mesin": "D9-12",
+    "id": 23,
+    "carline": "Mitsubishi",
+    "mesin": "M9-02",
     "target": 0
   },
   {
-    "id": 43,
-    "carline": "Daihatsu",
-    "mesin": "D9-13",
+    "id": 24,
+    "carline": "Mitsubishi",
+    "mesin": "M9-03",
     "target": 0
   },
   {
-    "id": 44,
-    "carline": "Daihatsu",
-    "mesin": "D9-14",
+    "id": 25,
+    "carline": "Mitsubishi",
+    "mesin": "M9-04",
     "target": 0
   },
   {
-    "id": 45,
-    "carline": "Daihatsu",
-    "mesin": "D9-15",
+    "id": 26,
+    "carline": "Mitsubishi",
+    "mesin": "M9-05",
     "target": 0
   },
   {
-    "id": 46,
-    "carline": "Daihatsu",
-    "mesin": "D9-16",
+    "id": 27,
+    "carline": "Mitsubishi",
+    "mesin": "M9-06",
     "target": 0
   },
   {
-    "id": 47,
-    "carline": "Daihatsu",
-    "mesin": "D9-17",
+    "id": 28,
+    "carline": "Mitsubishi",
+    "mesin": "M9-07",
     "target": 0
   },
   {
-    "id": 48,
-    "carline": "Daihatsu",
-    "mesin": "D9-18",
+    "id": 29,
+    "carline": "Mitsubishi",
+    "mesin": "M9-08",
     "target": 0
   },
   {
-    "id": 49,
-    "carline": "Daihatsu",
-    "mesin": "D9-19",
+    "id": 30,
+    "carline": "Mitsubishi",
+    "mesin": "M9-09",
     "target": 0
   },
   {
-    "id": 50,
-    "carline": "Daihatsu",
-    "mesin": "D9-20",
+    "id": 31,
+    "carline": "Mitsubishi",
+    "mesin": "M9-10",
     "target": 0
   },
   {
-    "id": 51,
-    "carline": "Daihatsu",
-    "mesin": "D9-21",
+    "id": 32,
+    "carline": "Domestik",
+    "mesin": "B9-01",
     "target": 0
-  },
-  {
-    "id": 52,
-    "carline": "Daihatsu",
-    "mesin": "D9-22",
-    "target": 0
-  },
-  {
-    "id": 53,
-    "carline": "Daihatsu",
-    "mesin": "D9-23",
-    "target": 0
-  },
-  {
-    "id": 54,
-    "carline": "Daihatsu",
-    "mesin": "D9-24",
-    "target": 0
-  },
-  {
-    "id": 55,
-    "carline": "Daihatsu",
-    "mesin": "D9-25",
-    "target": 0
-  },
-  {
-    "id": 56,
-    "carline": "Daihatsu",
-    "mesin": "D9-26",
-    "target": 0
-  },
-  {
-    "id": 57,
-    "carline": "Daihatsu",
-    "mesin": "D9-27",
-    "target": 0
-  },
-  {
-    "id": 58,
-    "carline": "Daihatsu",
-    "mesin": "D9-28",
-    "target": 0
-  },
-  {
-    "id": 59,
-    "carline": "Daihatsu",
-    "mesin": "D9-29",
-    "target": 0
-  },
-  {
-    "id": 60,
-    "carline": "Daihatsu",
-    "mesin": "D9-30",
-    "target": 0
-  },
-  {
-    "id": 61,
-    "carline": "Daihatsu",
-    "mesin": "D9-31",
-    "target": 0
-  },
-  {
-    "id": 62,
-    "carline": "Daihatsu",
-    "mesin": "D9-32",
-    "target": 0
-  },
-  {
-    "id": 63,
-    "carline": "Daihatsu",
-    "mesin": "D9-33",
-    "target": 0
-  },
-  {
-    "id": 64,
-    "carline": "Daihatsu",
-    "mesin": "D9-34",
-    "target": 0
-  },
-  {
-    "id": 65,
-    "carline": "Daihatsu",
-    "mesin": "D9-35",
-    "target": 0
-  },
-  {
-    "id": 66,
-    "carline": "Toyota",
-    "mesin": "T9-40",
-    "target": 1000
-  },
-  {
-    "id": 67,
-    "carline": "Honda",
-    "mesin": "D9-100",
-    "target": 2222
-  },
-  {
-    "id": 68,
-    "carline": "Suzuki",
-    "mesin": "T9-45",
-    "target": 444
-  },
-  {
-    "id": 69,
-    "carline": "Toyota",
-    "mesin": "T9-55",
-    "target": 10
-  },
-  {
-    "id": 70,
-    "carline": "Toyota",
-    "mesin": "T9-44",
-    "target": 444
   }
 ]
